@@ -50,15 +50,15 @@
     <section class="relative w-full h-56 sm:h-64 rounded-3xl overflow-hidden shadow-2xl mb-5 border border-yellow-400/30">
       <!-- Fondo del niño dentro del rectángulo -->
       <div class="absolute inset-0 z-0">
-        <img src="./imagen4.jpg" alt="Fondo: foto del cumpleañero"
-             class="w-full h-full object-cover object-[50%_30%]"
-             loading="eager" decoding="async"/>
+        <img src="./imagen4.jpg"
+     class="w-full h-full object-cover object-[50%_30%] origin-[50%_30%] scale-6"
+     loading="eager" decoding="async"/>
         <!-- Capa de realce para que los GIFs destaquen -->
         <div class="absolute inset-0 bg-gradient-to-tr from-black/10 via-transparent to-black/5"></div>
       </div>
       <div class="absolute -top-10 -right-10 w-48 h-48 rounded-full blur-2xl bg-yellow-400/40 z-[1] animate-[pulse_2.2s_ease-in-out_infinite]"></div>
       <!-- Gokú local: imagen2.gif (con fallback a .jfif) -->
-      <img src="./imagen2.gif" alt="Gokú celebrando" class="absolute bottom-0 left-20 w-48 sm:w-56 pointer-events-none z-10" loading="eager" decoding="async" onerror="this.onerror=null;this.src='./imagen2.jfif'"/>
+      <img src="./imagen2.gif" alt="Gokú celebrando" class="absolute bottom-0 left-99 w-40 sm:w-30 pointer-events-none z-10" loading="eager" decoding="async" onerror="this.onerror=null;this.src='./imagen2.gif'"/>
       <!-- Esfera local: imagen3.png (en raíz) -->
       <img src="./imagen3.png" alt="Esfera del dragón" class="absolute top-3 right-3 w-16 sm:w-20 animate-[floaty_3.5s_ease-in-out_infinite] z-10" loading="lazy" decoding="async"/>      
       <!-- Aura giratoria -->
