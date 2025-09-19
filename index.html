@@ -50,7 +50,11 @@
     <section class="relative w-full h-56 sm:h-64 rounded-3xl overflow-hidden shadow-2xl mb-5 border border-yellow-400/30">
       <!-- Fondo del niño dentro del rectángulo -->
       <div class="absolute inset-0 z-0">
-        <img src="./imagen4.jpg" alt="Fondo: foto del cumpleañero" class="w-full h-full object-cover" loading="eager" decoding="async"/>
+        <img src="./imagen4.jpg" alt="Fondo: foto del cumpleañero"
+             class="w-full h-full object-cover object-[50%_30%] blur-sm"
+             loading="eager" decoding="async"/>
+        <!-- Capa de realce para que los GIFs destaquen -->
+        <div class="absolute inset-0 bg-gradient-to-tr from-black/20 via-transparent to-black/10"></div>
       </div>
       <div class="absolute -top-10 -right-10 w-48 h-48 rounded-full blur-2xl bg-yellow-400/40 z-[1] animate-[pulse_2.2s_ease-in-out_infinite]"></div>
       <!-- Gokú local: imagen2.gif (con fallback a .jfif) -->
