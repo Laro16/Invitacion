@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Invitación — Cumple de Gael</title>
+
+  <!-- TailwindCSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet" />
+
+  <!-- Preload -->
+  <link rel="preload" as="image" href="https://i.pinimg.com/originals/a0/40/73/a04073a384b72f5348f6d7815616335a.jpg" />
+
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+    .dbz-font { font-family: 'Bangers', cursive; -webkit-text-stroke: 1px #000; text-shadow: 2px 2px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; }
+    .shine { background: radial-gradient(60% 40% at 50% 0%, rgba(255,255,255,.35), rgba(255,255,255,0) 60%); }
+    .pattern { background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 14px 14px; }
+    @keyframes floaty { 0%,100%{ transform: translateY(0)} 50%{ transform: translateY(-6px)} }
+    @keyframes pulseGlow { 0%,100%{ box-shadow: 0 0 0 0 rgba(251,191,36,.5)} 50%{ box-shadow: 0 0 40px 6px rgba(251,191,36,.6)} }
+    @keyframes spinSlow { to{ transform: rotate(360deg) } }
+  </style>
+</head>
+
+<body class="min-h-screen bg-[#0b1640] text-white selection:bg-yellow-300/60">
+  <!-- Fondo -->
+  <div class="fixed inset-0 -z-10">
+    <div class="absolute inset-0 bg-gradient-to-b from-indigo-900 via-blue-900 to-slate-900"></div>
+    <div class="absolute inset-0 opacity-20 pattern"></div>
+    <div class="absolute inset-0 bg-cover bg-center mix-blend-overlay opacity-30" style="background-image:url('https://i.pinimg.com/originals/a0/40/73/a04073a384b72f5348f6d7815616335a.jpg');"></div>
+  </div>
+
+  <main class="max-w-md mx-auto px-4 py-6 sm:py-10">
+    <!-- Encabezado -->
+    <header class="text-center mb-4">
+      <p class="uppercase tracking-widest text-white/70 text-xs">¡Estás invitado!</p>
+      <h1 class="dbz-font text-5xl sm:text-6xl text-yellow-300 drop-shadow md:leading-tight">Kame Fiesta de Gael</h1>
+      <p class="mt-1 text-white/80">¡Ven a celebrar conmigo!</p>
+    </header>
+
+    <!-- Hero con personaje y esfera -->
+    <section class="relative w-full h-56 sm:h-64 rounded-3xl overflow-hidden shadow-2xl mb-5 border border-yellow-400/30">
+      <div class="absolute inset-0 bg-gradient-to-tr from-orange-500/40 via-amber-400/30 to-yellow-300/20"></div>
+      <div class="absolute inset-0 shine"></div>
+      <div class="absolute -top-10 -right-10 w-48 h-48 rounded-full blur-2xl bg-yellow-400/40 animate-[pulse_2.2s_ease-in-out_infinite]"></div>
+      <!-- Gokú -->
+      <img src="https://assets.stickpng.com/images/585a191f4f6ae202fedf2874.png" alt="Gokú celebrando" class="absolute bottom-0 left-2 w-40 sm:w-48 pointer-events-none" loading="eager" decoding="async"/>
+      <!-- Esfera 4 estrellas -->
+      <img src="https://i.imgur.com/4n7wWgU.png" alt="Esfera del dragón" class="absolute top-3 right-3 w-16 sm:w-20 animate-[floaty_3.5s_ease-in-out_infinite]" loading="lazy" decoding="async"/>
+      <!-- Aura giratoria -->
+      <div class="absolute -bottom-20 -left-20 w-56 h-56 rounded-full border-4 border-yellow-300/30 animate-[spinSlow_16s_linear_infinite]"></div>
+    </section>
+
+    <!-- Datos principales -->
+    <section class="bg-white/10 backdrop-blur rounded-2xl p-4 sm:p-5 shadow-lg ring-1 ring-white/10">
+      <h2 class="dbz-font text-3xl text-yellow-300 drop-shadow mb-1">Detalles del evento</h2>
+      <p class="text-white/90 -mt-1">¡Cumplo <span class="font-bold">10</span> años!</p>
+
+      <ul class="mt-3 space-y-3 text-sm sm:text-base">
+        <li class="flex items-center gap-3">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M6 2a1 1 0 0 0-1 1v1H4a2 2 0 0 0-2 2v2h20V6a2 2 0 0 0-2-2h-1V3a1 1 0 1 0-2 0v1H7V3a1 1 0 0 0-1-1ZM22 10H2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V10ZM7 14a1 1 0 0 1 1-1h3v3H8a1 1 0 0 1-1-1v-1Zm6-1h3a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1h-3v-3Z"/></svg>
+          <div>
+            <p class="font-semibold">Sábado, 12 de octubre</p>
+            <p class="text-white/70 text-xs">3:00 p. m. – 6:00 p. m.</p>
+          </div>
+        </li>
+        <li class="flex items-center gap-3">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.14 2 5 5.14 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.86-3.14-7-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5Z"/></svg>
+          <div>
+            <p class="font-semibold">Salón de Eventos “Kame House”</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=Retalhuleu%2C%20Guatemala" target="_blank" rel="noopener" class="text-yellow-300 underline decoration-dotted text-xs">Ver ubicación</a>
+          </div>
+        </li>
+        <li class="flex items-center gap-3">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M20 7h-4.18A3 3 0 0 0 13 5h-2a3 3 0 0 0-2.82 2H4a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2ZM7 17H5v-2h2v2Zm4 0H9v-2h2v2Zm4 0h-2v-2h2v2Z"/></svg>
+          <p class="font-semibold">Tema: Dragon Ball Z</p>
+        </li>
+      </ul>
+
+      <!-- Acciones principales -->
+      <div class="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <a id="btnWhats" href="https://wa.me/50212345678?text=%C2%A1Hola!%20Confirmo%20mi%20asistencia%20al%20cumplea%C3%B1os%20de%20Gael.%20%C2%A1All%C3%AD%20estar%C3%A9!" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 rounded-xl px-4 py-3 bg-green-500 text-white font-extrabold shadow active:scale-[0.98]">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M20.52 3.48A11.85 11.85 0 0 0 1.8 17.41L1 22.99l5.7-.75A11.88 11.88 0 0 0 12 24C18.63 24 24 18.63 24 12a11.9 11.9 0 0 0-3.48-8.52ZM12 22a9.9 9.9 0 0 1-5.06-1.37l-.36-.21-3 .39.4-2.95-.23-.38A9.95 9.95 0 1 1 22 12 10 10 0 0 1 12 22Zm5.35-7.65c-.29-.14-1.73-.86-2-.96s-.47-.15-.67.15-.77.95-.95 1.14-.35.22-.64.08a8.07 8.07 0 0 1-2.38-1.47 9 9 0 0 1-1.67-2.07c-.17-.29 0-.45.12-.6s.29-.35.43-.53a2 2 0 0 0 .29-.49.52.52 0 0 0 0-.49c0-.15-.66-1.6-.9-2.2s-.48-.5-.66-.51h-.56a1.07 1.07 0 0 0-.77.36 3.25 3.25 0 0 0-1 2.41A5.64 5.64 0 0 0 8 13.3a13 13 0 0 0 4.72 4.1 16.13 16.13 0 0 0 1.58.58 3.8 3.8 0 0 0 1.74.11 2.85 2.85 0 0 0 1.86-1.32 2.33 2.33 0 0 0 .16-1.32c-.07-.11-.26-.18-.53-.3Z"/></svg>
+          Confirmar
+        </a>
+        <a id="btnCal" href="#" class="inline-flex items-center justify-center gap-2 rounded-xl px-4 py-3 bg-yellow-400 text-blue-900 font-extrabold shadow active:scale-[0.98]">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M19 4h-1V2h-2v2H8V2H6v2H5a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3Zm1 15a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V10h16v9Z"/></svg>
+          Agendar
+        </a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Retalhuleu%2C%20Guatemala" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 rounded-xl px-4 py-3 bg-blue-600 text-white font-extrabold shadow active:scale-[0.98]">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.14 2 5 5.14 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.86-3.14-7-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5Z"/></svg>
+          Mapa
+        </a>
+      </div>
+
+      <!-- Nota -->
+      <p class="mt-3 text-xs text-white/70">¿Alergias o restricciones? Escríbenos por WhatsApp.</p>
+    </section>
+
+    <!-- Bloque extra: instrucciones, regalos, etc. -->
+    <section class="mt-5 bg-white/5 backdrop-blur rounded-2xl p-4 ring-1 ring-white/10">
+      <h3 class="dbz-font text-2xl text-yellow-300 drop-shadow mb-1">Dress code</h3>
+      <p class="text-sm text-white/90">Ven con tu polo favorito de <span class="font-semibold">Dragon Ball</span> o con algo naranja/azul.</p>
+    </section>
+
+    <!-- Compartir -->
+    <div class="mt-5 flex gap-3">
+      <button id="btnShare" class="flex-1 inline-flex items-center justify-center gap-2 rounded-xl px-4 py-3 bg-white/10 text-white font-semibold ring-1 ring-white/10 active:scale-[0.98]">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.02-4.11A2.99 2.99 0 1 0 14 5a2.99 2.99 0 0 0 .09.7L7.07 9.81A3 3 0 1 0 6 15a2.99 2.99 0 0 0 2.91-2.3l7.12 4.17c.5.46 1.17.75 1.91.75A2.99 2.99 0 1 0 18 16.08Z"/></svg>
+        Compartir
+      </button>
+      <a id="btnCall" href="tel:+50212345678" class="flex-1 inline-flex items-center justify-center gap-2 rounded-xl px-4 py-3 bg-white/10 text-white font-semibold ring-1 ring-white/10 active:scale-[0.98]">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.66 15.66 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24 11.36 11.36 0 0 0 3.56.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 5a1 1 0 0 1 1-1h2.49a1 1 0 0 1 1 1 11.36 11.36 0 0 0 .57 3.56 1 1 0 0 1-.24 1.02l-2.2 2.21Z"/></svg>
+        Llamar
+      </a>
+    </div>
+
+    <footer class="mt-6 text-center text-[11px] text-white/50">Hecho con ki ✨. Dragon Ball Z © Toei Animation (uso no comercial).</footer>
+  </main>
+
+  <script>
+    // Datos del evento (ajusta a tu realidad)
+    const EVENT = {
+      title: 'Cumpleaños de Gael',
+      date: '2025-10-12',          // AAAA-MM-DD
+      startTime: '15:00',          // HH:mm (24h)
+      endTime: '18:00',            // HH:mm (24h)
+      location: 'Salón de Eventos “Kame House”, Retalhuleu, Guatemala',
+      details: '¡Trae tu mejor energía Saiyajin! Habrá juegos, pastel y sorpresas.'
+    };
+
+    // Construye link para Google Calendar (sin zona horaria explícita)
+    function toCalDate(dateStr, timeStr) {
+      const [y,m,d] = dateStr.split('-');
+      const [hh,mm] = timeStr.split(':');
+      return `${y}${m}${d}T${hh}${mm}00`;
+    }
+
+    const calBtn = document.getElementById('btnCal');
+    const start = toCalDate(EVENT.date, EVENT.startTime);
+    const end = toCalDate(EVENT.date, EVENT.endTime);
+    const calUrl = new URL('https://calendar.google.com/calendar/render');
+    calUrl.searchParams.set('action','TEMPLATE');
+    calUrl.searchParams.set('text', EVENT.title);
+    calUrl.searchParams.set('details', EVENT.details);
+    calUrl.searchParams.set('location', EVENT.location);
+    calUrl.searchParams.set('dates', `${start}/${end}`);
+    calBtn.href = calUrl.toString();
+
+    // Compartir (Web Share API)
+    const shareBtn = document.getElementById('btnShare');
+    shareBtn.addEventListener('click', async () => {
+      const shareData = {
+        title: EVENT.title,
+        text: `Te invito el ${EVENT.date.replaceAll('-', '/')} a las ${EVENT.startTime}. ¡Confírmame por WhatsApp!`,
+        url: window.location.href
+      };
+      if (navigator.share) {
+        try { await navigator.share(shareData); } catch(_){}
+      } else {
+        // Fallback: copiar URL
+        try { await navigator.clipboard.writeText(window.location.href); alert('Enlace copiado ✅'); } catch (_) { alert('Comparte manualmente este enlace.'); }
+      }
+    });
+  </script>
+</body>
+</html>
