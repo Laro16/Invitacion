@@ -13,8 +13,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet" />
 
-  <!-- Preload -->
-  <link rel="preload" as="image" href="https://i.pinimg.com/originals/a0/40/73/a04073a384b72f5348f6d7815616335a.jpg" />
+  <!-- Preload (imagen local) -->
+  <!-- Renombra y coloca tus archivos en la carpeta ./imagenes/ del repositorio -->
+  <link rel="preload" as="image" href="./imagenes/imagen1.jpg" />
 
   <style>
     :root { color-scheme: light dark; }
@@ -33,7 +34,8 @@
   <div class="fixed inset-0 -z-10">
     <div class="absolute inset-0 bg-gradient-to-b from-indigo-900 via-blue-900 to-slate-900"></div>
     <div class="absolute inset-0 opacity-20 pattern"></div>
-    <div class="absolute inset-0 bg-cover bg-center mix-blend-overlay opacity-30" style="background-image:url('https://i.pinimg.com/originals/a0/40/73/a04073a384b72f5348f6d7815616335a.jpg');"></div>
+    <!-- Fondo local: imagen1.jpg -->
+    <div class="absolute inset-0 bg-cover bg-center mix-blend-overlay opacity-30" style="background-image:url('./imagenes/imagen1.jpg');"></div>
   </div>
 
   <main class="max-w-md mx-auto px-4 py-6 sm:py-10">
@@ -49,10 +51,10 @@
       <div class="absolute inset-0 bg-gradient-to-tr from-orange-500/40 via-amber-400/30 to-yellow-300/20"></div>
       <div class="absolute inset-0 shine"></div>
       <div class="absolute -top-10 -right-10 w-48 h-48 rounded-full blur-2xl bg-yellow-400/40 animate-[pulse_2.2s_ease-in-out_infinite]"></div>
-      <!-- Gokú -->
-      <img src="https://assets.stickpng.com/images/585a191f4f6ae202fedf2874.png" alt="Gokú celebrando" class="absolute bottom-0 left-2 w-40 sm:w-48 pointer-events-none" loading="eager" decoding="async"/>
-      <!-- Esfera 4 estrellas -->
-      <img src="https://i.imgur.com/4n7wWgU.png" alt="Esfera del dragón" class="absolute top-3 right-3 w-16 sm:w-20 animate-[floaty_3.5s_ease-in-out_infinite]" loading="lazy" decoding="async"/>
+      <!-- Gokú local: imagen2.png (fondo transparente recomendado) -->
+      <img src="./imagenes/imagen2.png" alt="Gokú celebrando" class="absolute bottom-0 left-2 w-40 sm:w-48 pointer-events-none" loading="eager" decoding="async"/>
+      <!-- Esfera local: imagen3.png -->
+      <img src="./imagenes/imagen3.png" alt="Esfera del dragón" class="absolute top-3 right-3 w-16 sm:w-20 animate-[floaty_3.5s_ease-in-out_infinite]" loading="lazy" decoding="async"/>
       <!-- Aura giratoria -->
       <div class="absolute -bottom-20 -left-20 w-56 h-56 rounded-full border-4 border-yellow-300/30 animate-[spinSlow_16s_linear_infinite]"></div>
     </section>
