@@ -48,19 +48,17 @@
 
     <!-- Hero con personaje y esfera -->
     <section class="relative w-full h-56 sm:h-64 rounded-3xl overflow-hidden shadow-2xl mb-5 border border-yellow-400/30">
-      <div class="absolute inset-0 bg-gradient-to-tr from-orange-500/40 via-amber-400/30 to-yellow-300/20"></div>
-      <div class="absolute inset-0 shine"></div>
-      <div class="absolute -top-10 -right-10 w-48 h-48 rounded-full blur-2xl bg-yellow-400/40 animate-[pulse_2.2s_ease-in-out_infinite]"></div>
+      <!-- Fondo del niño dentro del rectángulo -->
+      <div class="absolute inset-0 z-0">
+        <img src="./imagen4.jpg" alt="Fondo: foto del cumpleañero" class="w-full h-full object-cover" loading="eager" decoding="async"/>
+      </div>
+      <div class="absolute -top-10 -right-10 w-48 h-48 rounded-full blur-2xl bg-yellow-400/40 z-[1] animate-[pulse_2.2s_ease-in-out_infinite]"></div>
       <!-- Gokú local: imagen2.gif (con fallback a .jfif) -->
-      <img src="./imagen2.gif" alt="Gokú celebrando" class="absolute bottom-0 left-20 w-48 sm:w-56 pointer-events-none" loading="eager" decoding="async" onerror="this.onerror=null;this.src='./imagen2.jfif'"/>
+      <img src="./imagen2.gif" alt="Gokú celebrando" class="absolute bottom-0 left-20 w-48 sm:w-56 pointer-events-none z-10" loading="eager" decoding="async" onerror="this.onerror=null;this.src='./imagen2.jfif'"/>
       <!-- Esfera local: imagen3.png (en raíz) -->
-      <img src="./imagen3.png" alt="Esfera del dragón" class="absolute top-3 right-3 w-16 sm:w-20 animate-[floaty_3.5s_ease-in-out_infinite]" loading="lazy" decoding="async"/>
-      
-      <!-- Foto del niño: imagen4.jpg (en raíz) -->
-      <img src="./imagen4.jpg" alt="Foto del cumpleañero" class="absolute bottom-3 right-3 w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover ring-4 ring-yellow-300/80 shadow-xl animate-[floaty_4s_ease-in-out_infinite]" loading="lazy" decoding="async" onerror="this.style.display='none'"/>
-      
+      <img src="./imagen3.png" alt="Esfera del dragón" class="absolute top-3 right-3 w-16 sm:w-20 animate-[floaty_3.5s_ease-in-out_infinite] z-10" loading="lazy" decoding="async"/>      
       <!-- Aura giratoria -->
-      <div class="absolute -bottom-20 -left-20 w-56 h-56 rounded-full border-4 border-yellow-300/30 animate-[spinSlow_16s_linear_infinite]"></div>
+      <div class="absolute -bottom-20 -left-20 w-56 h-56 rounded-full border-4 border-yellow-300/30 z-[1] animate-[spinSlow_16s_linear_infinite]"></div>
     </section>
 
     <!-- Datos principales -->
