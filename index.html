@@ -50,25 +50,25 @@
     <section class="relative w-full h-56 sm:h-64 rounded-3xl overflow-hidden shadow-2xl mb-5 border border-yellow-400/30">
       <!-- Fondo del niño dentro del rectángulo -->
       <div class="absolute inset-0 z-0">
-        <img src="./imagen4.jpg"
-     class="w-full h-full object-cover object-[50%_30%] origin-[50%_30%] scale-6"
-     loading="eager" decoding="async"/>
+        <img src="./imagen4.jpg" alt="Fondo: foto del cumpleañero"
+             class="w-full h-full object-cover object-[50%_30%] origin-[50%_30%] scale-110"
+             loading="eager" decoding="async"/>
         <!-- Capa de realce para que los GIFs destaquen -->
         <div class="absolute inset-0 bg-gradient-to-tr from-black/10 via-transparent to-black/5"></div>
       </div>
       <div class="absolute -top-10 -right-10 w-48 h-48 rounded-full blur-2xl bg-yellow-400/40 z-[1] animate-[pulse_2.2s_ease-in-out_infinite]"></div>
-      <!-- Gokú local: imagen2.gif (con fallback a .jfif) -->
-      <img src="./imagen2.gif" alt="Gokú celebrando" class="absolute bottom-0 left-99 w-40 sm:w-30 pointer-events-none z-10" loading="eager" decoding="async" onerror="this.onerror=null;this.src='./imagen2.gif'"/>
-      <!-- Esfera local: imagen3.png (en raíz) -->
-      <img src="./imagen3.png" alt="Esfera del dragón" class="absolute top-3 right-3 w-16 sm:w-20 animate-[floaty_3.5s_ease-in-out_infinite] z-10" loading="lazy" decoding="async"/>      
+      <!-- GIF izquierda: izquierda.gif -->
+      <img src="./izquierda.gif" alt="Gokú celebrando" class="absolute bottom-0 left-20 w-48 sm:w-56 pointer-events-none z-10" loading="eager" decoding="async" onerror="this.onerror=null;this.src='./izquierda.jfif'"/>
+      <!-- GIF derecha: derecha.png -->
+      <img src="./derecha.png" alt="Esfera del dragón" class="absolute top-3 right-3 w-16 sm:w-20 animate-[floaty_3.5s_ease-in-out_infinite] z-10" loading="lazy" decoding="async"/>      
       <!-- Aura giratoria -->
       <div class="absolute -bottom-20 -left-20 w-56 h-56 rounded-full border-4 border-yellow-300/30 z-[1] animate-[spinSlow_16s_linear_infinite]"></div>
     </section>
 
     <!-- Datos principales -->
     <section class="bg-white/10 backdrop-blur rounded-2xl p-4 sm:p-5 shadow-lg ring-1 ring-white/10">
-      <h2 class="dbz-font text-3xl text-yellow-300 drop-shadow mb-1">Detalles del evento</h2>
-      <p class="text-white/90 -mt-1">¡Cumplo <span class="font-bold">10</span> años!</p>
+      <h2 class="dbz-font text-3xl text-yellow-300 drop-shadow mb-1 text-center">Detalles del evento</h2>
+      <p class="text-white/90 -mt-1 text-center">¡Cumplo <span class="font-bold">10</span> años!</p>
 
       <ul class="mt-3 space-y-3 text-sm sm:text-base">
         <li class="flex items-center gap-3">
@@ -82,12 +82,8 @@
           <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.14 2 5 5.14 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.86-3.14-7-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5Z"/></svg>
           <div>
             <p class="font-semibold">Salón de Eventos “Kame House”</p>
-            <a href="https://www.google.com/maps/search/?api=1&query=Retalhuleu%2C%20Guatemala" target="_blank" rel="noopener" class="text-yellow-300 underline decoration-dotted text-xs">Ver Ubicación en el Radar</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=Retalhuleu%2C%20Guatemala" target="_blank" rel="noopener" class="text-yellow-300 underline decoration-dotted text-xs">Ver ubicación</a>
           </div>
-        </li>
-        <li class="flex items-center gap-3">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M20 7h-4.18A3 3 0 0 0 13 5h-2a3 3 0 0 0-2.82 2H4a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2ZM7 17H5v-2h2v2Zm4 0H9v-2h2v2Zm4 0h-2v-2h2v2Z"/></svg>
-          <p class="font-semibold">Tema: Dragon Ball Z</p>
         </li>
       </ul>
 
