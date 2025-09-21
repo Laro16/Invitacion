@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Invitación — Cumple de Gael</title>
+  <title>Invitación — Cumple de Eduardito</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
 
@@ -17,10 +17,8 @@
     :root { color-scheme: light dark; }
     body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
     .dbz-font { font-family: 'Bangers', cursive; -webkit-text-stroke: 1px #000; text-shadow: 2px 2px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; }
-    .shine { background: radial-gradient(60% 40% at 50% 0%, rgba(255,255,255,.35), rgba(255,255,255,0) 60%); }
     .pattern { background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 14px 14px; }
     @keyframes floaty { 0%,100%{ transform: translateY(0)} 50%{ transform: translateY(-6px)} }
-    @keyframes pulseGlow { 0%,100%{ box-shadow: 0 0 0 0 rgba(251,191,36,.5)} 50%{ box-shadow: 0 0 40px 6px rgba(251,191,36,.6)} }
     @keyframes spinSlow { to{ transform: rotate(360deg) } }
   </style>
 </head>
@@ -68,7 +66,7 @@
           <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.14 2 5 5.14 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.86-3.14-7-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5Z"/></svg>
           <div>
             <p class="font-semibold">Salón de Eventos “Kame House”</p>
-            <p class="text-white/70 text-xs">Retalhuleu, Guatemala</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=Retalhuleu%2C%20Guatemala" target="_blank" rel="noopener" class="text-yellow-300 underline decoration-dotted text-xs">Ver ubicación</a>
           </div>
         </li>
       </ul>
@@ -80,7 +78,7 @@
         </a>
       </div>
 
-      <p class="mt-3 text-xs text-white/80">Habrá Piscina, lleva tu traje de baño.</p>
+      <p class="mt-3 text-xs text-white/80">Habra Piscina, lleva tu traje de baño</p>
     </section>
 
     <section class="mt-5 bg-white/5 backdrop-blur rounded-2xl p-4 ring-1 ring-white/10">
@@ -108,9 +106,7 @@
       title: 'Cumpleaños de Eduardito',
       date: '2025-10-12',       // AAAA-MM-DD
       startTime: '15:00',         // HH:mm (24h)
-      endTime: '18:00',           // HH:mm (24h)
       location: 'Salón de Eventos “Kame House”, Retalhuleu, Guatemala',
-      details: '¡Trae tu mejor energía Saiyajin! Habrá juegos, pastel y sorpresas.'
     };
 
     // Compartir (Web Share API)
