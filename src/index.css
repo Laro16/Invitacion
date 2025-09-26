@@ -1,110 +1,113 @@
-:root{
-  --brand:#a88552;        /* Oro principal */
-  --brand-light: #e6d8c3;  /* Oro claro */
-  --ink:#2c2c2c;           /* Texto principal (casi negro) */
-  --muted:#7d7d7d;         /* Texto secundario */
-  --accent: #1e413a;       /* Verde esmeralda profundo */
-  --bg:#fbf9f6;            /* Fondo (blanco hueso) */
-  --card:#ffffff;          /* Tarjetas (blanco puro) */
-  --radius: 16px;           /* Radios globales */
-  --maxw: 900px;            /* Ancho máximo del contenido */
-  --shadow-soft: 0 4px 12px rgba(0,0,0,.05);
-  --shadow-medium: 0 8px 24px rgba(0,0,0,.08);
-  --transition: all .3s cubic-bezier(.25,.8,.25,1);
+/* ... (todo tu CSS anterior sin cambios hasta el final) ... */
+
+/* === ANIMACIONES === */
+.reveal{opacity:0; transform:translateY(20px); transition:opacity .8s ease, transform .8s ease; will-change: opacity, transform;}
+.reveal.visible{opacity:1; transform:none}
+
+
+/* 👇 CAMBIOS AQUÍ: Nuevos estilos para la portada de la historia y el modal */
+
+/* === STORY COVER === */
+.story-cover {
+  text-align: center;
+  padding: 80px 0;
+}
+.btn-circle {
+  background-color: var(--brand);
+  color: #fff;
+  border: 2px solid var(--brand);
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px auto 0;
+  box-shadow: var(--shadow-medium);
+  line-height: 1.2;
+}
+.btn-circle:hover {
+  transform: scale(1.05);
+  background-color: #947244;
 }
 
-/* === RESETS Y GLOBALES === */
-*{box-sizing:border-box}
-html{scroll-behavior: smooth;}
-body{
-  margin:0; 
-  color:var(--ink);
-  font-family:'Poppins', sans-serif;
-  font-weight: 300;
-  line-height:1.7;
-  background-color: var(--bg);
-  -webkit-font-smoothing:antialiased; 
-  -moz-osx-font-smoothing:grayscale;
-  overflow-x:hidden;
+/* === LIGHTBOX MODAL === */
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(30, 65, 58, 0.9);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  backdrop-filter: blur(8px);
+  animation: fadeIn .3s ease;
 }
-img{max-width:100%; display:block; border-radius: var(--radius);}
-ul,ol{margin:0; padding:0; list-style:none}
-a{color:var(--brand); text-decoration:none; transition: var(--transition);}
-a:hover{color:var(--accent);}
-.wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px;}
-.title{
-  font-family:'Playfair Display', serif; 
-  font-weight:600; 
-  font-size:clamp(32px, 6vw, 48px); 
-  margin:0 0 10px; text-align:center; 
-  line-height: 1.2;
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.lightbox-content {
+  position: relative;
+  background-color: var(--card);
+  padding: 12px;
+  border-radius: var(--radius);
+  box-shadow: 0 15px 40px rgba(0,0,0,.2);
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  animation: slideIn .4s cubic-bezier(.25,.8,.25,1);
+}
+@keyframes slideIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+.lightbox-content img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: calc(90vh - 100px); /* Ajusta para dejar espacio al caption */
+  object-fit: contain;
+  border-radius: calc(var(--radius) - 6px);
+}
+.lightbox-caption {
+  padding: 16px;
+  text-align: center;
+  color: var(--ink);
+}
+.lightbox-caption b {
   color: var(--accent);
 }
-.subtitle{
-  color:var(--muted); 
-  text-align:center; 
-  margin:-2px auto 40px; 
-  max-width:600px;
-  font-size: 1.1rem;
-}
-
-/* === HERO === */
-header.hero{
-  min-height:90svh; 
-  display:flex; flex-direction: column; justify-content: center;
-  text-align:center; position:relative; overflow:hidden; color:#fff;
-  padding: 40px 0;
-  background:
-    linear-gradient(to top, rgba(30, 65, 58, 0.7), rgba(30, 65, 58, 0.3) 60%, transparent),
-    url('/assets/imagenes/hero-portada.jpg') center/cover no-repeat;
-}
-header .badge{
-  display:inline-block; padding:.4rem 1rem; 
-  font-weight:600; letter-spacing:.1em; text-transform:uppercase; font-size:.75rem;
-  background:rgba(255,255,255,.15);
-  border:1px solid rgba(255,255,255,.3); 
-  border-radius:999px; backdrop-filter: blur(5px);
-  color: #fff;
-}
-header h1{
-  font-family:'Playfair Display',serif; font-weight:600;
-  font-size:clamp(48px, 10vw, 90px); 
-  margin:1rem 0 .5rem; line-height:1.05;
-  text-shadow:0 3px 15px rgba(0,0,0,.3);
-  color: #fff;
-}
-header p.sub{color:#f0f0f0; margin:.5rem 0 1.5rem; font-size: 1.1rem;}
-
-/* ...el resto del CSS hasta el final... */
-
-/* 👇 CAMBIO AQUÍ: Estilos para el indicador de scroll */
-/* === SCROLL DOWN INDICATOR === */
-.scroll-down-indicator {
+.lightbox-close {
   position: absolute;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 30px;
-  height: 50px;
-  border: 2.5px solid rgba(255, 255, 255, 0.7);
-  border-radius: 50px;
-  cursor: pointer;
-}
-.scroll-down-indicator::before {
-  content: '';
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 8px;
-  height: 8px;
-  background: #fff;
+  top: -15px;
+  right: -15px;
+  width: 40px;
+  height: 40px;
+  background-color: #fff;
+  border: 0;
   border-radius: 50%;
-  animation: scroll-animation 2s infinite;
+  font-size: 2rem;
+  line-height: 1;
+  color: var(--accent);
+  cursor: pointer;
+  box-shadow: var(--shadow-medium);
+  display: grid;
+  place-items: center;
+  transition: var(--transition);
 }
-@keyframes scroll-animation {
-  0% { opacity: 0; transform: translate(-50%, 0); }
-  40% { opacity: 1; }
-  80% { opacity: 0; transform: translate(-50%, 20px); }
-  100% { opacity: 0; }
+.lightbox-close:hover {
+  transform: scale(1.1) rotate(90deg);
+  background-color: var(--brand);
+  color: #fff;
 }
+
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important; transition:none!important; scroll-behavior:auto!important}}
