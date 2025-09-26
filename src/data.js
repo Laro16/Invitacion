@@ -1,11 +1,11 @@
 // Importa todas las imágenes y la música que usarás
-import historia1 from './assets/imagenes/historia-1.jpg';
-import historia2 from './assets/imagenes/historia-2.jpg';
-import historia3 from './assets/imagenes/historia-3.jpg';
-import historia4 from './assets/imagenes/historia-4.jpg';
-import ceremoniaImg from './assets/imagenes/ceremonia.jpg';
-import recepcionImg from './assets/imagenes/recepcion.jpg';
-import heroPortada from './assets/imagenes/hero-portada.jpg';
+import historia1 from './assets/imagenes/historia-1.webp';
+import historia2 from './assets/imagenes/historia-2.webp';
+import historia3 from './assets/imagenes/historia-3.webp';
+import historia4 from './assets/imagenes/historia-4.webp';
+import ceremoniaImg from './assets/imagenes/ceremonia.webp';
+import recepcionImg from './assets/imagenes/recepcion.webp';
+import heroPortada from './assets/imagenes/hero-portada.webp';
 import musicaFondo from './assets/musica/fondo.mp3';
 
 export const weddingData = {
@@ -40,4 +40,5 @@ export const weddingData = {
     { time: "10:30 pm", title: "Corte del Pastel", place: "¡El momento más dulce de la noche!" },
     { time: "12:00 am", title: "Despedida y Agradecimientos", place: "Gracias por ser parte de nuestra historia. 💕" }
   ]
+
 };
