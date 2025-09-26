@@ -1,6 +1,6 @@
 {
   "name": "boda-invitacion-react",
-  "homepage": "https://<TU-USUARIO>.github.io/<TU-REPOSITORIO>",
+  "homepage": "https://<TU-USUARIO>.github.io/<Invitacion>",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -27,3 +27,4 @@
     "vite": "^5.2.0"
   }
 }
+
