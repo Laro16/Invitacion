@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { weddingData } from './data.js';
 
+// 👇 CAMBIO AQUÍ: Se eliminó la importación de la imagen 'historiaCoverImage'
+
 const pad = (num) => String(num).padStart(2, '0');
 
 function Boda() {
@@ -16,13 +18,11 @@ function Boda() {
   const [isStoryVisible, setIsStoryVisible] = useState(false);
   const [activeModalSlide, setActiveModalSlide] = useState(null);
 
-  // 👇 NUEVOS ESTADOS para la funcionalidad de swipe táctil
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
 
   const audioRef = useRef(null);
 
-  // Countdown Timer Effect (sin cambios)
   useEffect(() => {
     const targetDate = new Date(event.date);
     const interval = setInterval(() => {
@@ -41,10 +41,7 @@ function Boda() {
     }, 1000);
     return () => clearInterval(interval);
   }, [event.date]);
-
-  // 👇 CAMBIO AQUÍ: Se eliminó por completo el useEffect que controlaba el auto-play del carrusel.
   
-  // Scroll Reveal Animation Effect (sin cambios)
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => entries.forEach(entry => {
@@ -58,7 +55,6 @@ function Boda() {
     return () => observer.disconnect();
   }, []);
 
-  // Funciones de control (sin cambios)
   const handleScrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   const handleAddToCalendar = () => {
     const start = new Date(event.date);
@@ -91,10 +87,9 @@ function Boda() {
     }
   };
 
-  // 👇 NUEVAS FUNCIONES para manejar el deslizamiento táctil
   const minSwipeDistance = 50;
   const handleTouchStart = (e) => {
-    setTouchEnd(null); // Resetear al empezar
+    setTouchEnd(null);
     setTouchStart(e.targetTouches[0].clientX);
   };
   const handleTouchMove = (e) => {
@@ -112,7 +107,6 @@ function Boda() {
     if (isRightSwipe) {
       setCurrentSlide((prev) => (prev - 1 + storySlides.length) % storySlides.length);
     }
-    // Resetear valores
     setTouchStart(null);
     setTouchEnd(null);
   };
@@ -157,17 +151,17 @@ function Boda() {
         <section id="historia" className="wrap reveal sectioned">
           <h2 className="title">Nuestra Historia</h2>
           {!isStoryVisible ? (
+            // 👇 CAMBIO AQUÍ: Simplificado a un botón con texto dinámico
             <div className="story-cover">
-              <p className="subtitle">Un viaje a través de los momentos que nos trajeron hasta aquí.</p>
-              <button className="btn-circle" onClick={() => setIsStoryVisible(true)}>
-                Ver Nuestra Historia
+              <button className="story-cover-card" onClick={() => setIsStoryVisible(true)}>
+                <span className="story-cover-subtitle">Click para ver la historia de</span>
+                <span className="story-cover-title">{couple.name1} y {couple.name2}</span>
               </button>
             </div>
           ) : (
             <>
               <p className="subtitle">Desliza para revivir nuestros recuerdos más queridos. Haz clic en una imagen para verla en grande.</p>
               <div className="slider">
-                {/* 👇 CAMBIO AQUÍ: Se agregan los eventos onTouch para el swipe */}
                 <div 
                   className="slides-container" 
                   onTouchStart={handleTouchStart}
