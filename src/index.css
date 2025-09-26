@@ -157,38 +157,50 @@ section.sectioned::before{
   position:absolute; top:20px; left:50%; transform:translateX(-50%);
 }
 
-/* === SLIDER === */
-.slider{
-  position:relative; 
-  background: var(--card);
-  padding: 12px;
-  border-radius: var(--radius); 
+/* 👇 CAMBIO AQUÍ: Eliminados todos los estilos del carrusel y reemplazados por la galería */
+/* === STORY GALLERY (MINIATURAS) === */
+.story-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+@media (min-width: 720px) {
+  .story-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+.thumbnail-card {
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: var(--shadow-soft);
+  transition: var(--transition);
+}
+.thumbnail-card:hover {
+  transform: scale(1.05);
   box-shadow: var(--shadow-medium);
 }
-.slides-container {
-  overflow: hidden;
-  position: relative;
-  border-radius: calc(var(--radius) - 6px);
+.thumbnail-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent 60%);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 12px;
+  color: #fff;
+  font-weight: 600;
+  text-align: center;
+  opacity: 0;
+  transition: var(--transition);
 }
-.slides{display:flex; transition:transform .6s cubic-bezier(.22,.75,.18,1); }
-.slide{min-width:100%; height:70svh; position:relative; cursor: pointer;}
-.slide img{width:100%; height:100%; object-fit:cover; border-radius: 0;}
-.slide.is-active img{transform:scale(1.03)}
-.overlay{
-  position:absolute; left:16px; right:16px; bottom:16px;
-  background:rgba(255,255,255,.85);
-  backdrop-filter: blur(6px);
-  border:1px solid var(--hairline); color:var(--ink);
-  padding:16px; border-radius:var(--radius); box-shadow:var(--shadow-soft);
-  opacity:0; transform:translateY(10px); transition:opacity .6s ease, transform .6s ease .1s;
+.thumbnail-card:hover .thumbnail-overlay {
+  opacity: 1;
 }
-.slide.is-active .overlay{opacity:1; transform:translateY(0)}
-.nav-btn{position:absolute; top:50%; transform:translateY(-50%); z-index:10; width:44px; height:44px; border-radius:50%; border:0; background:rgba(255,255,255,.8); display:grid; place-items:center; cursor:pointer; box-shadow:var(--shadow-soft); transition: var(--transition);}
-.nav-btn:hover { background: #fff; transform: translateY(-50%) scale(1.05); }
-.nav-btn.prev{left:16px} .nav-btn.next{right:16px}
-.dots{position:absolute; inset:auto 0 32px; display:flex; gap:10px; justify-content:center; z-index:5}
-.dots button{width:10px; height:10px; border-radius:50%; border:1.5px solid #fff; background:transparent; transition: var(--transition); box-shadow: 0 1px 3px rgba(0,0,0,.2); cursor: pointer;}
-.dots button[aria-current="true"]{background: #fff;}
 
 /* === TARJETAS DE CONTENIDO (LUGARES, ITINERARIO) === */
 .grid{display:grid; gap:24px}
@@ -213,21 +225,23 @@ section.sectioned::before{
 /* === TIMELINE (ITINERARIO) === */
 .timeline{
   position:relative; 
-  max-width: 600px; /* 👇 CAMBIO AQUÍ: Reducido de 900px a 600px para hacerlo más angosto */
+  max-width: 600px;
   margin:40px auto 0;
 }
 .timeline::before{content:""; position:absolute; left:45px; top:10px; bottom:10px; width:2px; background:var(--brand-light);}
 .tl-item{display:grid; grid-template-columns:90px 1fr; gap:16px; align-items:center; position:relative; margin-bottom:20px}
 .tl-time{
   font-weight:600; 
-  font-size: 1.1rem; 
+  font-size: 1rem; /* Ligeramente más pequeño para que encaje mejor */
   color: var(--accent); 
-  text-align: right; /* 👇 CAMBIO AQUÍ: Alineado a la derecha */
-  padding-right: 20px; /* 👇 CAMBIO AQUÍ: Añadido espacio para que no tope con la línea */
+  text-align: center;
+  padding: 2px 0; /* Espacio vertical para que el fondo respire */
+  background: var(--bg); /* Fondo para "cortar" la línea */
   position:relative; 
   z-index:2;
 }
-.tl-dot{position:absolute; left:45px; top:50%; transform:translate(-50%, -50%); width:16px; height:16px; border-radius:50%; background:var(--bg); border: 3px solid var(--brand-light); z-index:1}
+/* 👇 CAMBIO AQUÍ: Eliminados los estilos del .tl-dot */
+
 .tl-card.card{box-shadow:var(--shadow-soft); padding:20px; will-change: none; }
 .tl-card.card:hover { transform: none; box-shadow: var(--shadow-medium); }
 .tl-card .body{padding:0}
