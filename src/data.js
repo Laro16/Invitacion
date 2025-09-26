@@ -1,4 +1,5 @@
 // Importa todas las imágenes y la música que usarás
+// 👇 CAMBIO AQUÍ: Asegúrate de que todas las imágenes ahora terminen en .webp
 import historia1 from './assets/imagenes/historia-1.webp';
 import historia2 from './assets/imagenes/historia-2.webp';
 import historia3 from './assets/imagenes/historia-3.webp';
@@ -40,5 +41,4 @@ export const weddingData = {
     { time: "10:30 pm", title: "Corte del Pastel", place: "¡El momento más dulce de la noche!" },
     { time: "12:00 am", title: "Despedida y Agradecimientos", place: "Gracias por ser parte de nuestra historia. 💕" }
   ]
-
 };
