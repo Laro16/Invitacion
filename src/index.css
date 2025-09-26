@@ -211,13 +211,21 @@ section.sectioned::before{
 .card h3 { font-family: 'Playfair Display', serif; margin: 0 0 8px; color: var(--accent); }
 
 /* === TIMELINE (ITINERARIO) === */
-.timeline{position:relative; max-width:900px; margin:40px auto 0;}
+.timeline{
+  position:relative; 
+  max-width: 600px; /* 👇 CAMBIO AQUÍ: Reducido de 900px a 600px para hacerlo más angosto */
+  margin:40px auto 0;
+}
 .timeline::before{content:""; position:absolute; left:45px; top:10px; bottom:10px; width:2px; background:var(--brand-light);}
 .tl-item{display:grid; grid-template-columns:90px 1fr; gap:16px; align-items:center; position:relative; margin-bottom:20px}
 .tl-time{
-  font-weight:600; font-size: 1.1rem; color: var(--accent); 
-  text-align:left;
-  position:relative; z-index:2;
+  font-weight:600; 
+  font-size: 1.1rem; 
+  color: var(--accent); 
+  text-align: right; /* 👇 CAMBIO AQUÍ: Alineado a la derecha */
+  padding-right: 20px; /* 👇 CAMBIO AQUÍ: Añadido espacio para que no tope con la línea */
+  position:relative; 
+  z-index:2;
 }
 .tl-dot{position:absolute; left:45px; top:50%; transform:translate(-50%, -50%); width:16px; height:16px; border-radius:50%; background:var(--bg); border: 3px solid var(--brand-light); z-index:1}
 .tl-card.card{box-shadow:var(--shadow-soft); padding:20px; will-change: none; }
@@ -298,7 +306,6 @@ footer.signature em{
   100% { opacity: 0; }
 }
 
-/* 👇 CAMBIO AQUÍ: Estilos actualizados para la portada de la historia (sin imagen) */
 /* === STORY COVER === */
 .story-cover {
   display: flex;
