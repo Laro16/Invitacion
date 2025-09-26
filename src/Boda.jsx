@@ -1,11 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { weddingData } from './data.js';
 
-// ... (El resto de las importaciones y la función 'pad' sin cambios)
-import historiaCoverImage from './assets/imagenes/historia-cover.webp'; 
+// 👇 LÍNEA ELIMINADA: La importación de 'historiaCoverImage' ya no está aquí.
 
 const pad = (num) => String(num).padStart(2, '0');
-
 
 function Boda() {
   const { heroImage, backgroundMusic, couple, event, contact, storySlides, locations, itinerary } = weddingData;
@@ -162,7 +160,6 @@ function Boda() {
           ) : (
             <>
               <p className="subtitle">Haz clic en una imagen para revivir nuestros recuerdos más queridos.</p>
-              {/* 👇 CAMBIO AQUÍ: Reemplazo del carrusel por la galería de miniaturas */}
               <div className="story-grid">
                 {storySlides.map((slide, index) => (
                   <article 
@@ -208,7 +205,6 @@ function Boda() {
               <li key={index} className="tl-item reveal">
                 <div className="tl-time">{item.time}</div>
                 <div className="tl-card card"><div className="body"><b>{item.title}</b><div className="place">{item.place}</div></div></div>
-                {/* 👇 CAMBIO AQUÍ: Eliminado el span del punto (tl-dot) */}
               </li>
             ))}
           </ul>
