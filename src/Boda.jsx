@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { weddingData } from './data.js';
 
-// 👇 CAMBIO AQUÍ: Se eliminó la importación de la imagen 'historiaCoverImage'
+// ... (El resto de las importaciones y la función 'pad' sin cambios)
+import historiaCoverImage from './assets/imagenes/historia-cover.webp'; 
 
 const pad = (num) => String(num).padStart(2, '0');
+
 
 function Boda() {
   const { heroImage, backgroundMusic, couple, event, contact, storySlides, locations, itinerary } = weddingData;
@@ -151,7 +153,6 @@ function Boda() {
         <section id="historia" className="wrap reveal sectioned">
           <h2 className="title">Nuestra Historia</h2>
           {!isStoryVisible ? (
-            // 👇 CAMBIO AQUÍ: Simplificado a un botón con texto dinámico
             <div className="story-cover">
               <button className="story-cover-card" onClick={() => setIsStoryVisible(true)}>
                 <span className="story-cover-subtitle">Click para ver la historia de</span>
@@ -160,32 +161,21 @@ function Boda() {
             </div>
           ) : (
             <>
-              <p className="subtitle">Desliza para revivir nuestros recuerdos más queridos. Haz clic en una imagen para verla en grande.</p>
-              <div className="slider">
-                <div 
-                  className="slides-container" 
-                  onTouchStart={handleTouchStart}
-                  onTouchMove={handleTouchMove}
-                  onTouchEnd={handleTouchEnd}
-                >
-                  <ul className="slides" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
-                    {storySlides.map((slide, index) => (
-                      <li 
-                        key={index} 
-                        className={`slide ${index === currentSlide ? 'is-active' : ''}`}
-                        onClick={() => setActiveModalSlide(index)}
-                      >
-                        <img src={slide.image} alt={slide.alt} loading="lazy" />
-                        <div className="overlay"><b>{slide.date}</b><p style={{ margin: '4px 0 0' }}>{slide.caption}</p></div>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <button className="nav-btn prev" onClick={(e) => { e.stopPropagation(); setCurrentSlide((currentSlide - 1 + storySlides.length) % storySlides.length); }}>⟵</button>
-                <button className="nav-btn next" onClick={(e) => { e.stopPropagation(); setCurrentSlide((currentSlide + 1) % storySlides.length); }}>⟶</button>
-                <div className="dots">
-                  {storySlides.map((_, index) => <button key={index} onClick={(e) => { e.stopPropagation(); setCurrentSlide(index); }} aria-current={index === currentSlide}></button>)}
-                </div>
+              <p className="subtitle">Haz clic en una imagen para revivir nuestros recuerdos más queridos.</p>
+              {/* 👇 CAMBIO AQUÍ: Reemplazo del carrusel por la galería de miniaturas */}
+              <div className="story-grid">
+                {storySlides.map((slide, index) => (
+                  <article 
+                    key={index}
+                    className="thumbnail-card reveal"
+                    onClick={() => setActiveModalSlide(index)}
+                    style={{ backgroundImage: `url(${slide.image})` }}
+                  >
+                    <div className="thumbnail-overlay">
+                      <b>{slide.date}</b>
+                    </div>
+                  </article>
+                ))}
               </div>
             </>
           )}
@@ -218,7 +208,7 @@ function Boda() {
               <li key={index} className="tl-item reveal">
                 <div className="tl-time">{item.time}</div>
                 <div className="tl-card card"><div className="body"><b>{item.title}</b><div className="place">{item.place}</div></div></div>
-                <span className="tl-dot" aria-hidden="true"></span>
+                {/* 👇 CAMBIO AQUÍ: Eliminado el span del punto (tl-dot) */}
               </li>
             ))}
           </ul>
