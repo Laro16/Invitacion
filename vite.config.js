@@ -5,6 +5,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   // --- AÑADE ESTA LÍNEA ---
-  base: '/<TInvitacion>/', 
+  base: '/<Invitacion>/', 
 })
+
 
