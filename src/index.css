@@ -157,7 +157,6 @@ section.sectioned::before{
   position:absolute; top:20px; left:50%; transform:translateX(-50%);
 }
 
-/* 👇 CAMBIO AQUÍ: Eliminados todos los estilos del carrusel y reemplazados por la galería */
 /* === STORY GALLERY (MINIATURAS) === */
 .story-grid {
   display: grid;
@@ -172,17 +171,24 @@ section.sectioned::before{
 .thumbnail-card {
   aspect-ratio: 1 / 1;
   border-radius: var(--radius);
-  background-size: cover;
-  background-position: center;
   position: relative;
   overflow: hidden;
   cursor: pointer;
   box-shadow: var(--shadow-soft);
   transition: var(--transition);
 }
+/* 👇 CAMBIO AQUÍ: Se eliminó el hover de la tarjeta y se agregaron estilos para la imagen interna */
 .thumbnail-card:hover {
-  transform: scale(1.05);
   box-shadow: var(--shadow-medium);
+}
+.thumbnail-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--transition);
+}
+.thumbnail-card:hover img {
+  transform: scale(1.1);
 }
 .thumbnail-overlay {
   position: absolute;
@@ -232,16 +238,14 @@ section.sectioned::before{
 .tl-item{display:grid; grid-template-columns:90px 1fr; gap:16px; align-items:center; position:relative; margin-bottom:20px}
 .tl-time{
   font-weight:600; 
-  font-size: 1rem; /* Ligeramente más pequeño para que encaje mejor */
+  font-size: 1rem;
   color: var(--accent); 
   text-align: center;
-  padding: 2px 0; /* Espacio vertical para que el fondo respire */
-  background: var(--bg); /* Fondo para "cortar" la línea */
+  padding: 2px 0;
+  background: var(--bg);
   position:relative; 
   z-index:2;
 }
-/* 👇 CAMBIO AQUÍ: Eliminados los estilos del .tl-dot */
-
 .tl-card.card{box-shadow:var(--shadow-soft); padding:20px; will-change: none; }
 .tl-card.card:hover { transform: none; box-shadow: var(--shadow-medium); }
 .tl-card .body{padding:0}
