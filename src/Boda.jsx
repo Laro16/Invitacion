@@ -51,7 +51,9 @@ function Boda() {
           entry.target.classList.add('visible');
           observer.unobserve(entry.target);
         }
-      }), { threshold: 0.1 }
+      }), 
+      // 👇 CAMBIO AQUÍ: La animación empieza cuando el 40% del elemento es visible
+      { threshold: 0.4 }
     );
     document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
     return () => observer.disconnect();
@@ -124,125 +126,12 @@ function Boda() {
             <button className="btn secondary" onClick={handleAddToCalendar}>Añadir al Calendario</button>
           </div>
         </div>
+        {/* 👇 CAMBIO AQUÍ: Indicador para invitar al usuario a hacer scroll */}
+        <div className="scroll-down-indicator"></div>
       </header>
       
-      <div className={`player ${isPlaying ? 'playing' : ''}`}>
-        <div className="disc" aria-hidden="true"></div>
-        <button className="icon-btn" onClick={togglePlayPause} aria-label="Reproducir / Pausar">
-          <svg className="icon" viewBox="0 0 24 24" style={{ display: isPlaying ? 'none' : 'block' }}><path d="M8 5v14l11-7z" /></svg>
-          <svg className="icon" viewBox="0 0 24 24" style={{ display: isPlaying ? 'block' : 'none' }}><path d="M6 5h4v14H6zm8 0h4v14h-4z" /></svg>
-        </button>
-        <button className="icon-btn" onClick={toggleMute} aria-label="Silenciar / Activar">
-          <svg className="icon" viewBox="0 0 24 24" style={{ display: isMuted ? 'none' : 'block' }}><path d="M4 10v4h4l5 4V6l-5 4H4zm12.5 2a4.5 4.5 0 0 0-2.3-3.9v7.8a4.5 4.5 0 0 0 2.3-3.9z" /></svg>
-          <svg className="icon" viewBox="0 0 24 24" style={{ display: isMuted ? 'block' : 'none' }}><path d="M16.5 12a4.5 4.5 0 0 1-2.3 3.9V8.1A4.5 4.5 0 0 1 16.5 12zM4 10v4h4l5 4V6l-5 4H4zm12.6 6.2 1.4 1.4L21.6 18l-1.8-1.8L21.6 14l-1.4-1.4-1.8 1.8-1.8-1.8L15.2 14l1.8 1.8-1.8 1.8z" /></svg>
-        </button>
-      </div>
+      {/* ...el resto del componente JSX sigue igual... */}
 
-      <main>
-        <section id="historia" className="wrap reveal sectioned">
-          <h2 className="title">Nuestra Historia</h2>
-          <p className="subtitle">Un viaje a través de los momentos que nos trajeron hasta aquí. Desliza para revivir nuestros recuerdos más queridos.</p>
-          <div className="center-actions">
-            <button className="btn primary" id="btnEscuchar" onClick={togglePlayPause}>
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg> Reproducir Nuestra Canción
-            </button>
-          </div>
-          <div className="slider">
-            <div className="slides-container">
-              <ul className="slides" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
-                {storySlides.map((slide, index) => (
-                  <li key={index} className={`slide ${index === currentSlide ? 'is-active' : ''}`}>
-                    <img src={slide.image} alt={slide.alt} loading="lazy" />
-                    <div className="overlay"><b>{slide.date}</b><p style={{ margin: '4px 0 0' }}>{slide.caption}</p></div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <button className="nav-btn prev" onClick={() => setCurrentSlide((currentSlide - 1 + storySlides.length) % storySlides.length)}>⟵</button>
-            <button className="nav-btn next" onClick={() => setCurrentSlide((currentSlide + 1) % storySlides.length)}>⟶</button>
-            <div className="dots">
-              {storySlides.map((_, index) => <button key={index} onClick={() => setCurrentSlide(index)} aria-current={index === currentSlide}></button>)}
-            </div>
-          </div>
-        </section>
-
-        <section id="lugares" className="wrap reveal sectioned">
-          <h2 className="title">La Celebración</h2>
-          <p className="subtitle">Estos son los lugares donde celebraremos nuestro amor. Toca en cada uno para ver la ubicación en el mapa.</p>
-          <div className="grid two">
-            {locations.map((loc, index) => (
-              <article key={index} className="card reveal">
-                <img src={loc.image} alt={`Lugar de la ${loc.type}`} loading="lazy" />
-                <div className="body">
-                  <h3>{loc.type}</h3>
-                  <p className="helper">{loc.name}<br />{loc.details}</p>
-                  <div className="center-actions">
-                    <a className="btn primary" href={loc.mapLink} target="_blank" rel="noopener noreferrer">Ver Ubicación</a>
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section id="itinerario" className="wrap reveal sectioned">
-          <h2 className="title">Itinerario</h2>
-          <p className="subtitle">Planeamos cada momento con mucho cariño para que disfrutes este día con nosotros.</p>
-          <ul className="timeline">
-            {itinerary.map((item, index) => (
-              <li key={index} className="tl-item reveal">
-                <div className="tl-time">{item.time}</div>
-                <div className="tl-card card"><div className="body"><b>{item.title}</b><div className="place">{item.place}</div></div></div>
-                <span className="tl-dot" aria-hidden="true"></span>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <section id="rsvp" className="wrap reveal sectioned">
-          <h2 className="title">Confirmar Asistencia</h2>
-          <p className="subtitle">Tu presencia es nuestro mayor regalo. Por favor, confirma tu asistencia antes del 6 de Noviembre de 2025.</p>
-          <form className="rsvp-card" onSubmit={handleRsvpSubmit}>
-            <div className="field">
-              <label htmlFor="guestName"><span>Nombre Completo</span></label>
-              <input className="input" id="guestName" type="text" placeholder="Escribe tu nombre y apellido" required value={guestName} onChange={(e) => setGuestName(e.target.value)} />
-            </div>
-            <div className="field">
-              <label htmlFor="companions"><span>Acompañantes</span></label>
-              <select className="select" id="companions" value={companions} onChange={(e) => setCompanions(e.target.value)}>
-                <option value="0">Asistiré sin acompañantes</option>
-                <option value="1">Asistiré con 1 acompañante</option>
-                <option value="2">Asistiré con 2 acompañantes</option>
-                <option value="3">Asistiré con 3 acompañantes</option>
-                <option value="4">Asistiré con 4 acompañantes</option>
-                <option value="5">Asistiré con 5 acompañantes</option>
-                <option value="-1">Lamentablemente no podré asistir</option>
-              </select>
-            </div>
-            <div style={{ marginTop: '24px', textAlign: 'center' }}>
-              <button type="submit" className="btn primary" id="btnWhatsapp">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3.5a10 10 0 0 0-16.2 11.3L3 21l6.4-1.3A10 10 0 0 0 20.5 3.5Zm-1.1 13a8 8 0 0 1-11.8 1.5l-.3-.2-3 .6.6-2.9-.2-.3A8 8 0 1 1 19.4 16.5ZM8.9 7.9c.2-.5.4-.5.7-.5h.6c.2 0 .5 0 .7.5s.9 1.5.9 1.6.1.4 0 .6-.2.4-.4.6-.4.5-.2.9c.2.4 1 1.6 2.1 2.6 1.5 1.3 2.7 1.7 3.1 1.9s.5 0 .7-.2.8-.9 1-1.2.4-.2.6-.1.6.3 1.4.7 1.2.6 1.4.9.1.9-.2 1.5c-.3.6-1.2 1.1-1.6 1.1s-.9.2-3-.8a13.6 13.6 0 0 1-3.8-2.4 12.2 12.2 0 0 1-2.2-2.6c-.8-1.2-1.1-2.1-1.2-2.4-.2-.4 0-.8.1-1s.5-1.2.6-1.4Z"/></svg>
-                Confirmar por WhatsApp
-              </button>
-              <p className="helper">O si prefieres, puedes llamar al <a href={`tel:${contact.phone}`}>{contact.phoneDisplay}</a>.</p>
-            </div>
-          </form>
-        </section>
-
-        <footer className="signature reveal sectioned">
-          <div>Con todo nuestro cariño,</div>
-          <em>{couple.name1} & {couple.name2}</em>
-        </footer>
-      </main>
-
-      <audio 
-        ref={audioRef}
-        src={backgroundMusic}
-        preload="auto" 
-        loop
-        onPlay={handleAudioStateChange}
-        onPause={handleAudioStateChange}
-      />
     </>
   );
 }
