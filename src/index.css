@@ -56,7 +56,7 @@ header.hero{
   padding: 40px 0;
   background:
     linear-gradient(to top, rgba(30, 65, 58, 0.7), rgba(30, 65, 58, 0.3) 60%, transparent),
-    url('/assets/imagenes/hero-portada.jpg') center/cover no-repeat;
+    url('/assets/imagenes/hero-portada.webp') center/cover no-repeat;
 }
 header .badge{
   display:inline-block; padding:.4rem 1rem; 
@@ -266,5 +266,6 @@ footer.signature em{
 /* === ANIMACIONES === */
 .reveal{opacity:0; transform:translateY(20px); transition:opacity .8s ease, transform .8s ease; will-change: opacity, transform;}
 .reveal.visible{opacity:1; transform:none}
+
 
 @media (prefers-reduced-motion:reduce){*{animation:none!important; transition:none!important; scroll-behavior:auto!important}}
