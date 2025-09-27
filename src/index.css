@@ -176,7 +176,6 @@ section.sectioned{
   padding:80px 0;
   position:relative
 }
-/* 👇 CAMBIO AQUÍ: Restaurado el separador de secciones */
 section.sectioned::before{
   content: url("data:image/svg+xml,%3Csvg width='80' height='20' viewBox='0 0 80 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40 10L80 10' stroke='%23a88552' stroke-opacity='0.5'/%3E%3Cpath d='M40 10L0 10' stroke='%23a88552' stroke-opacity='0.5'/%3E%3Cpath d='M45.5 18.5C45.5 18.5 42.5 10 40 10C37.5 10 34.5 1.5 34.5 1.5' stroke='%23a88552' stroke-opacity='0.5'/%3E%3Cpath d='M34.5 18.5C34.5 18.5 37.5 10 40 10C42.5 10 45.5 1.5 45.5 1.5' stroke='%23a88552' stroke-opacity='0.5'/%3E%3C/svg%3E%0A");
   position:absolute; top:20px; left:50%; transform:translateX(-50%);
@@ -198,7 +197,7 @@ section.sectioned::before{
   width: 100%;
   object-fit: contain;
   background-color: #f5f2ef;
-}
+} /* 👇 CAMBIO AQUÍ: Añadida la llave de cierre que faltaba */
 .card:hover{transform:translateY(-5px); box-shadow:var(--shadow-medium)}
 .card .body{padding:24px}
 .card h3 { font-family: 'Playfair Display', serif; margin: 0 0 8px; color: var(--accent); }
@@ -209,20 +208,17 @@ section.sectioned::before{
   max-width: 600px;
   margin:40px auto 0;
 }
-/* 👇 CAMBIO AQUÍ: Restaurada la línea vertical */
 .timeline::before{content:""; position:absolute; left:45px; top:10px; bottom:10px; width:2px; background:var(--brand-light);}
 .tl-item{display:grid; grid-template-columns:90px 1fr; gap:16px; align-items:center; position:relative; margin-bottom:20px}
 .tl-time{
   font-weight:600; 
   font-size: 1.1rem;
   color: var(--accent); 
-  /* Se elimina el fondo para que la línea sea visible */
   text-align: right;
   padding-right: 20px;
   position:relative; 
   z-index:2;
 }
-/* 👇 CAMBIO AQUÍ: Restaurado el punto de la línea de tiempo */
 .tl-dot{position:absolute; left:45px; top:50%; transform:translate(-50%, -50%); width:16px; height:16px; border-radius:50%; background:var(--bg); border: 3px solid var(--brand-light); z-index:1}
 .tl-card.card{box-shadow:var(--shadow-soft); padding:20px; will-change: none; }
 .tl-card.card:hover { transform: none; box-shadow: var(--shadow-medium); }
@@ -460,3 +456,35 @@ footer.signature em{
   line-height: 1;
   color: var(--accent);
   cursor: pointer;
+  box-shadow: var(--shadow-medium);
+  display: grid;
+  place-items: center;
+  transition: var(--transition);
+}
+.lightbox-close:hover {
+  transform: scale(1.1) rotate(90deg);
+  background-color: var(--brand);
+  color: #fff;
+}
+
+/* === CLICK ICON EFFECT === */
+.click-icon {
+  position: fixed;
+  width: 30px;
+  height: 30px;
+  pointer-events: none;
+  z-index: 9999;
+  animation: float-up 1s ease-out forwards;
+}
+@keyframes float-up {
+  0% {
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -150px) scale(1.2);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important; transition:none!important; scroll-behavior:auto!important}}
