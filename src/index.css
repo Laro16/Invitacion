@@ -168,10 +168,12 @@ section.sectioned::before{
   will-change: transform, box-shadow;
   overflow: hidden;
 }
+/* 👇 CAMBIO AQUÍ: Se ajusta el object-fit para las imágenes de las tarjetas de lugares */
 .grid.two .card img {
   height: 250px;
   width: 100%;
-  object-fit: cover;
+  object-fit: contain; /* De 'cover' a 'contain' */
+  background-color: #f5f2ef; /* Fondo sutil para el espacio vacío */
 }
 .card:hover{transform:translateY(-5px); box-shadow:var(--shadow-medium)}
 .card .body{padding:24px}
@@ -341,23 +343,19 @@ footer.signature em{
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: var(--shadow-medium);
-  /* 👇 CAMBIO AQUÍ: Añadido un fondo sutil para el letterboxing */
   background-color: #f5f2ef; 
 }
 .story-image img {
   width: 100%;
   height: 100%;
-  /* 👇 CAMBIO AQUÍ: De 'cover' a 'contain' para que la imagen se vea completa */
   object-fit: contain;
 }
 .story-content {
   flex: 1 1 50%;
-  /* 👇 CAMBIO AQUÍ: Añadidos estilos para centrar y decorar el texto */
   text-align: center;
   position: relative;
-  padding-top: 30px; /* Espacio para el adorno */
+  padding-top: 30px;
 }
-/* 👇 CAMBIO AQUÍ: Nuevo adorno con pseudo-elemento */
 .story-content::before {
   content: '';
   position: absolute;
@@ -390,7 +388,6 @@ footer.signature em{
 }
 
 /* === LIGHTBOX MODAL === */
-/* (Este código ya no se usa para la sección de historia, pero se puede mantener por si se usa en otro lugar) */
 .lightbox-overlay {
   position: fixed;
   inset: 0;
