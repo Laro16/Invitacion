@@ -50,7 +50,8 @@ a:hover{color:var(--accent);}
 
 /* === HERO === */
 header.hero{
-  min-height:90svh; 
+  /* 👇 CAMBIO AQUÍ: Reducida la altura del hero */
+  min-height: 80svh; 
   display:flex; flex-direction: column; justify-content: center;
   text-align:center; position:relative; overflow:hidden; color:#fff;
   padding: 40px 0;
@@ -149,63 +150,12 @@ header p.sub{color:#f0f0f0; margin:.5rem 0 1.5rem; font-size: 1.1rem;}
 
 /* === SECCIONES Y SEPARADORES === */
 section.sectioned{
-  padding:80px 0; /* Espacio entre secciones reducido */
+  padding:80px 0;
   position:relative
 }
 section.sectioned::before{
   content: url("data:image/svg+xml,%3Csvg width='80' height='20' viewBox='0 0 80 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40 10L80 10' stroke='%23a88552' stroke-opacity='0.5'/%3E%3Cpath d='M40 10L0 10' stroke='%23a88552' stroke-opacity='0.5'/%3E%3Cpath d='M45.5 18.5C45.5 18.5 42.5 10 40 10C37.5 10 34.5 1.5 34.5 1.5' stroke='%23a88552' stroke-opacity='0.5'/%3E%3Cpath d='M34.5 18.5C34.5 18.5 37.5 10 40 10C42.5 10 45.5 1.5 45.5 1.5' stroke='%23a88552' stroke-opacity='0.5'/%3E%3C/svg%3E%0A");
   position:absolute; top:20px; left:50%; transform:translateX(-50%);
-}
-
-/* === STORY GALLERY (MINIATURAS) === */
-.story-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-}
-@media (min-width: 720px) {
-  .story-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-.thumbnail-card {
-  aspect-ratio: 1 / 1;
-  border-radius: var(--radius);
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-  box-shadow: var(--shadow-soft);
-  transition: var(--transition);
-}
-/* 👇 CAMBIO AQUÍ: Se eliminó el hover de la tarjeta y se agregaron estilos para la imagen interna */
-.thumbnail-card:hover {
-  box-shadow: var(--shadow-medium);
-}
-.thumbnail-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: var(--transition);
-}
-.thumbnail-card:hover img {
-  transform: scale(1.1);
-}
-.thumbnail-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent 60%);
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  padding: 12px;
-  color: #fff;
-  font-weight: 600;
-  text-align: center;
-  opacity: 0;
-  transition: var(--transition);
-}
-.thumbnail-card:hover .thumbnail-overlay {
-  opacity: 1;
 }
 
 /* === TARJETAS DE CONTENIDO (LUGARES, ITINERARIO) === */
@@ -281,7 +231,12 @@ section.sectioned::before{
 .icon path{fill:var(--ink)}
 
 /* === FOOTER === */
-footer.signature{ text-align:center; color:var(--muted) }
+footer.signature{ 
+  text-align:center; 
+  color:var(--muted);
+  /* 👇 CAMBIO AQUÍ: Añadido padding para "subir" el footer */
+  padding-bottom: 40px;
+}
 footer.signature em{ 
   font-family:'Dancing Script', cursive; 
   font-size:clamp(28px, 6vw, 42px); 
@@ -336,8 +291,8 @@ footer.signature em{
   color: var(--card);
   border-radius: var(--radius);
   width: 100%;
-  max-width: 450px; /* Ancho máximo del botón */
-  aspect-ratio: 1 / 1; /* Para que sea un cuadrado perfecto */
+  max-width: 450px;
+  aspect-ratio: 1 / 1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -365,6 +320,56 @@ footer.signature em{
   color: var(--card);
   margin: 10px 0 0;
   line-height: 1.1;
+}
+
+/* 👇 CAMBIO AQUÍ: Nuevos estilos para la historia vertical */
+/* === STORY TIMELINE === */
+.story-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.story-item {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+/* Alternar la dirección para cada item impar */
+.story-item:nth-child(odd) {
+  flex-direction: row-reverse;
+}
+.story-image {
+  flex: 1 1 50%;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-medium);
+}
+.story-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.story-content {
+  flex: 1 1 50%;
+}
+.story-date {
+  font-weight: 600;
+  color: var(--brand);
+  display: block;
+  margin-bottom: 8px;
+}
+.story-content p {
+  margin: 0;
+  color: var(--muted);
+}
+/* Adaptación para móviles */
+@media (max-width: 720px) {
+  .story-item,
+  .story-item:nth-child(odd) {
+    flex-direction: column;
+  }
 }
 
 /* === LIGHTBOX MODAL === */
@@ -404,7 +409,7 @@ footer.signature em{
   width: auto;
   height: auto;
   max-width: 100%;
-  max-height: calc(90vh - 100px); /* Ajusta para dejar espacio al caption */
+  max-height: calc(90vh - 100px);
   object-fit: contain;
   border-radius: calc(var(--radius) - 6px);
 }
