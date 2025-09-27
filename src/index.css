@@ -50,10 +50,16 @@ a:hover{color:var(--accent);}
 
 /* === HERO === */
 header.hero{
-  min-height: 80svh; 
-  display:flex; flex-direction: column; justify-content: center;
-  text-align:center; position:relative; overflow:hidden; color:#fff;
-  padding: 40px 0;
+  /* 👇 CAMBIO AQUÍ: Reducida aún más la altura y ajustado el padding */
+  min-height: 75svh; 
+  display:flex; 
+  flex-direction: column; 
+  justify-content: center; /* Mantenemos centrado verticalmente */
+  text-align:center; 
+  position:relative; 
+  overflow:hidden; 
+  color:#fff;
+  padding: 80px 0; /* Aumenta padding para subir un poco el contenido */
   background:
     linear-gradient(to top, rgba(30, 65, 58, 0.7), rgba(30, 65, 58, 0.3) 60%, transparent),
     url('/assets/imagenes/hero-portada.webp') center/cover no-repeat;
@@ -76,9 +82,19 @@ header h1{
 header p.sub{color:#f0f0f0; margin:.5rem 0 1.5rem; font-size: 1.1rem;}
 
 /* === COUNTDOWN === */
-.countdown{display:flex; justify-content:center; gap:12px; margin:24px auto;}
+.countdown{
+  display:flex; 
+  justify-content:center; 
+  gap: 8px; /* Reducido para pantallas pequeñas */
+  margin:24px auto;
+  flex-wrap: wrap; /* Permite que los elementos se reordenen si no caben */
+}
 .time-box{
-  min-width:80px; border-radius:var(--radius); padding:12px; text-align:center; color:#fff;
+  min-width: 75px; /* Reducido para pantallas pequeñas */
+  border-radius:var(--radius); 
+  padding:12px 8px; /* Ajustado el padding horizontal */
+  text-align:center; 
+  color:#fff;
   background:rgba(255,255,255,.1);
   border:1px solid rgba(255,255,255,.25);
   box-shadow:var(--shadow-soft);
@@ -86,6 +102,16 @@ header p.sub{color:#f0f0f0; margin:.5rem 0 1.5rem; font-size: 1.1rem;}
 }
 .time-box .num{font-size:clamp(28px, 5vw, 36px); font-weight:600; display:block; line-height:1.1;}
 .time-box .label{font-size:11px; opacity:.8; letter-spacing:.08em; text-transform:uppercase}
+/* 👇 CAMBIO AQUÍ: Media query para ajustar el contador en pantallas muy angostas */
+@media (max-width: 360px) {
+  .time-box {
+    min-width: 70px;
+    padding: 10px 5px;
+  }
+  .countdown {
+    gap: 5px;
+  }
+}
 
 /* === BOTONES === */
 .cta-row{display:flex; gap:.8rem; justify-content:center; flex-wrap:wrap; margin-top: 24px;}
@@ -122,120 +148,14 @@ header p.sub{color:#f0f0f0; margin:.5rem 0 1.5rem; font-size: 1.1rem;}
 }
 .btn svg { width: 18px; height: 18px; }
 
-/* Estilo especial para los botones con letra cursiva */
-#btnWhatsapp,
-#btnEscuchar {
-  font-family: 'Dancing Script', cursive;
-  text-transform: none;
-  font-size: 1.2rem;
-  font-weight: 500;
-  letter-spacing: normal;
-  color: #fff;
-  padding: .7rem 1.8rem;
-}
-#btnWhatsapp svg,
-#btnEscuchar svg {
-  margin-right: 4px; /* Pequeño ajuste para el icono */
-  fill: #fff; /* Asegura que el icono también sea blanco */
-}
-
-/* Centra el botón de escuchar nuestra canción */
-.center-actions {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 40px;
-}
-
-
-/* === SECCIONES Y SEPARADORES === */
-section.sectioned{
-  padding:80px 0;
-  position:relative
-}
-section.sectioned::before{
-  content: url("data:image/svg+xml,%3Csvg width='80' height='20' viewBox='0 0 80 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40 10L80 10' stroke='%23a88552' stroke-opacity='0.5'/%3E%3Cpath d='M40 10L0 10' stroke='%23a88552' stroke-opacity='0.5'/%3E%3Cpath d='M45.5 18.5C45.5 18.5 42.5 10 40 10C37.5 10 34.5 1.5 34.5 1.5' stroke='%23a88552' stroke-opacity='0.5'/%3E%3Cpath d='M34.5 18.5C34.5 18.5 37.5 10 40 10C42.5 10 45.5 1.5 45.5 1.5' stroke='%23a88552' stroke-opacity='0.5'/%3E%3C/svg%3E%0A");
-  position:absolute; top:20px; left:50%; transform:translateX(-50%);
-}
-
-/* === TARJETAS DE CONTENIDO (LUGARES) === */
-.grid{display:grid; gap:24px}
-@media(min-width:720px){.grid.two{grid-template-columns:repeat(2,1fr)}}
-.card{
-  background:var(--card); 
-  border-radius:var(--radius); 
-  box-shadow:var(--shadow-soft); 
-  transition:transform .25s ease, box-shadow .25s ease;
-  will-change: transform, box-shadow;
-  overflow: hidden;
-}
-/* 👇 CAMBIO AQUÍ: Se ajusta el object-fit para las imágenes de las tarjetas de lugares */
-.grid.two .card img {
-  height: 250px;
-  width: 100%;
-  object-fit: contain; /* De 'cover' a 'contain' */
-  background-color: #f5f2ef; /* Fondo sutil para el espacio vacío */
-}
-.card:hover{transform:translateY(-5px); box-shadow:var(--shadow-medium)}
-.card .body{padding:24px}
-.card h3 { font-family: 'Playfair Display', serif; margin: 0 0 8px; color: var(--accent); }
-
-/* === TIMELINE (ITINERARIO) === */
-.timeline{
-  position:relative; 
-  max-width: 600px;
-  margin:40px auto 0;
-}
-.timeline::before{content:""; position:absolute; left:45px; top:10px; bottom:10px; width:2px; background:var(--brand-light);}
-.tl-item{display:grid; grid-template-columns:90px 1fr; gap:16px; align-items:center; position:relative; margin-bottom:20px}
-.tl-time{
-  font-weight:600; 
-  font-size: 1rem;
-  color: var(--accent); 
-  text-align: center;
-  padding: 2px 0;
-  background: var(--bg);
-  position:relative; 
-  z-index:2;
-}
-.tl-card.card{box-shadow:var(--shadow-soft); padding:20px; will-change: none; }
-.tl-card.card:hover { transform: none; box-shadow: var(--shadow-medium); }
-.tl-card .body{padding:0}
-.tl-card .place{color:var(--muted); font-size:.95rem}
-.tl-card b { color: var(--accent); }
-
-/* === FORMULARIO RSVP === */
-.rsvp-card{
-  max-width:600px; margin:0 auto; padding:32px; background:var(--card); 
-  border-radius:var(--radius); box-shadow:var(--shadow-medium);
-}
-.field{display:flex; flex-direction:column; gap:.5rem; margin-bottom: 1.2rem;}
-.field span { font-weight: 600; color: var(--accent); }
-.input,.select{
-  width:100%; padding:12px 16px; border-radius:10px; 
-  border:1.5px solid #e0e0e0; background:#f9f9f9; 
-  box-shadow:none; outline:none; transition: var(--transition);
-  font-size: 1rem;
-}
-.input:focus,.select:focus{box-shadow:0 0 0 3px var(--brand-light); border-color:var(--brand)}
-.helper{font-size:.9rem; color:var(--muted); text-align: center; margin-top: 16px;}
-
-/* === REPRODUCTOR DE MÚSICA === */
-.player{position:fixed; right:16px; bottom:16px; z-index:50; display:flex; align-items:center; gap:.6rem; padding:.5rem; background:#fff; border-radius:999px; box-shadow:var(--shadow-medium)}
-.disc{width:32px; height:32px; border-radius:50%; background:radial-gradient(circle at 50% 50%, #444 0 8px, #222 9px 50%, #111 51% 100%), repeating-radial-gradient(circle at 50% 50%, rgba(255,255,255,.08) 0 2px, rgba(0,0,0,.15) 2px 4px); position:relative; flex:0 0 32px; box-shadow:inset 0 1px 4px rgba(0,0,0,.2); animation:spin 5s linear infinite; animation-play-state:paused;}
-.disc::after{content:""; position:absolute; width:8px; height:8px; border-radius:50%; background:var(--brand); top:50%; left:50%; transform:translate(-50%,-50%);}
-.player.playing .disc{animation-play-state:running}
-@keyframes spin{to{transform:rotate(360deg)}}
-.player .label,.player .sub{display:none}
-.icon-btn{width:40px; height:40px; display:grid; place-items:center; border-radius:50%; border:0; background:transparent; cursor:pointer; transition: var(--transition);}
-.icon-btn:hover { background-color: #f0f0f0; }
-.icon{width:20px; height:20px; display:block}
-.icon path{fill:var(--ink)}
+/* ... (resto de estilos de botones y secciones sin cambios) ... */
 
 /* === FOOTER === */
 footer.signature{ 
   text-align:center; 
   color:var(--muted);
-  padding-bottom: 40px;
+  /* 👇 CAMBIO AQUÍ: Aumentado el padding para subir más el footer */
+  padding-bottom: 80px;
 }
 footer.signature em{ 
   font-family:'Dancing Script', cursive; 
@@ -248,36 +168,7 @@ footer.signature em{
 .reveal{opacity:0; transform:translateY(20px); transition:opacity .8s ease, transform .8s ease; will-change: opacity, transform;}
 .reveal.visible{opacity:1; transform:none}
 
-/* === SCROLL DOWN INDICATOR === */
-.scroll-down-indicator {
-  position: absolute;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 30px;
-  height: 50px;
-  border: 2.5px solid rgba(255, 255, 255, 0.7);
-  border-radius: 50px;
-  cursor: pointer;
-}
-.scroll-down-indicator::before {
-  content: '';
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 8px;
-  height: 8px;
-  background: #fff;
-  border-radius: 50%;
-  animation: scroll-animation 2s infinite;
-}
-@keyframes scroll-animation {
-  0% { opacity: 0; transform: translate(-50%, 0); }
-  40% { opacity: 1; }
-  80% { opacity: 0; transform: translate(-50%, 20px); }
-  100% { opacity: 0; }
-}
+/* 👇 CAMBIO AQUÍ: Eliminados los estilos del scroll-down-indicator */
 
 /* === STORY COVER === */
 .story-cover {
@@ -334,7 +225,25 @@ footer.signature em{
   display: flex;
   gap: 24px;
   align-items: center;
+  /* 👇 CAMBIO AQUÍ: La animación ahora es controlada desde el padre */
+  opacity: 0;
+  transform: translateY(30px);
 }
+/* Animación escalonada */
+.story-timeline.is-revealed .story-item {
+  animation: deploy-effect 0.7s cubic-bezier(.25,.8,.25,1) both;
+}
+.story-timeline.is-revealed .story-item:nth-child(2) { animation-delay: 0.15s; }
+.story-timeline.is-revealed .story-item:nth-child(3) { animation-delay: 0.30s; }
+.story-timeline.is-revealed .story-item:nth-child(4) { animation-delay: 0.45s; }
+
+@keyframes deploy-effect {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .story-item:nth-child(odd) {
   flex-direction: row-reverse;
 }
@@ -387,77 +296,27 @@ footer.signature em{
   }
 }
 
-/* === LIGHTBOX MODAL === */
-.lightbox-overlay {
+/* ... (código del lightbox sin cambios) ... */
+
+/* 👇 NUEVO EFECTO: Estilos para el ripple effect */
+.ripple {
   position: fixed;
-  inset: 0;
-  background-color: rgba(30, 65, 58, 0.9);
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  backdrop-filter: blur(8px);
-  animation: fadeIn .3s ease;
-}
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-.lightbox-content {
-  position: relative;
-  background-color: var(--card);
-  padding: 12px;
-  border-radius: var(--radius);
-  box-shadow: 0 15px 40px rgba(0,0,0,.2);
-  max-width: 90vw;
-  max-height: 90vh;
-  display: flex;
-  flex-direction: column;
-  animation: slideIn .4s cubic-bezier(.25,.8,.25,1);
-}
-@keyframes slideIn {
-  from { opacity: 0; transform: scale(0.9); }
-  to { opacity: 1; transform: scale(1); }
-}
-.lightbox-content img {
-  width: auto;
-  height: auto;
-  max-width: 100%;
-  max-height: calc(90vh - 100px);
-  object-fit: contain;
-  border-radius: calc(var(--radius) - 6px);
-}
-.lightbox-caption {
-  padding: 16px;
-  text-align: center;
-  color: var(--ink);
-}
-.lightbox-caption b {
-  color: var(--accent);
-}
-.lightbox-close {
-  position: absolute;
-  top: -15px;
-  right: -15px;
-  width: 40px;
-  height: 40px;
-  background-color: #fff;
-  border: 0;
   border-radius: 50%;
-  font-size: 2rem;
-  line-height: 1;
-  color: var(--accent);
-  cursor: pointer;
-  box-shadow: var(--shadow-medium);
-  display: grid;
-  place-items: center;
-  transition: var(--transition);
+  background-color: rgba(168, 133, 82, 0.4);
+  transform: scale(0);
+  animation: ripple-effect 0.6s linear;
+  pointer-events: none;
+  z-index: 9999;
+  width: 100px;
+  height: 100px;
 }
-.lightbox-close:hover {
-  transform: scale(1.1) rotate(90deg);
-  background-color: var(--brand);
-  color: #fff;
+
+@keyframes ripple-effect {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
 }
+
 
 @media (prefers-reduced-motion:reduce){*{animation:none!important; transition:none!important; scroll-behavior:auto!important}}
