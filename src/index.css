@@ -50,7 +50,6 @@ a:hover{color:var(--accent);}
 
 /* === HERO === */
 header.hero{
-  /* 👇 CAMBIO AQUÍ: Reducida la altura del hero */
   min-height: 80svh; 
   display:flex; flex-direction: column; justify-content: center;
   text-align:center; position:relative; overflow:hidden; color:#fff;
@@ -158,7 +157,7 @@ section.sectioned::before{
   position:absolute; top:20px; left:50%; transform:translateX(-50%);
 }
 
-/* === TARJETAS DE CONTENIDO (LUGARES, ITINERARIO) === */
+/* === TARJETAS DE CONTENIDO (LUGARES) === */
 .grid{display:grid; gap:24px}
 @media(min-width:720px){.grid.two{grid-template-columns:repeat(2,1fr)}}
 .card{
@@ -234,7 +233,6 @@ section.sectioned::before{
 footer.signature{ 
   text-align:center; 
   color:var(--muted);
-  /* 👇 CAMBIO AQUÍ: Añadido padding para "subir" el footer */
   padding-bottom: 40px;
 }
 footer.signature em{ 
@@ -322,7 +320,6 @@ footer.signature em{
   line-height: 1.1;
 }
 
-/* 👇 CAMBIO AQUÍ: Nuevos estilos para la historia vertical */
 /* === STORY TIMELINE === */
 .story-timeline {
   display: flex;
@@ -336,7 +333,6 @@ footer.signature em{
   gap: 24px;
   align-items: center;
 }
-/* Alternar la dirección para cada item impar */
 .story-item:nth-child(odd) {
   flex-direction: row-reverse;
 }
@@ -345,14 +341,32 @@ footer.signature em{
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: var(--shadow-medium);
+  /* 👇 CAMBIO AQUÍ: Añadido un fondo sutil para el letterboxing */
+  background-color: #f5f2ef; 
 }
 .story-image img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  /* 👇 CAMBIO AQUÍ: De 'cover' a 'contain' para que la imagen se vea completa */
+  object-fit: contain;
 }
 .story-content {
   flex: 1 1 50%;
+  /* 👇 CAMBIO AQUÍ: Añadidos estilos para centrar y decorar el texto */
+  text-align: center;
+  position: relative;
+  padding-top: 30px; /* Espacio para el adorno */
+}
+/* 👇 CAMBIO AQUÍ: Nuevo adorno con pseudo-elemento */
+.story-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 2px;
+  background-color: var(--brand-light);
 }
 .story-date {
   font-weight: 600;
@@ -370,9 +384,13 @@ footer.signature em{
   .story-item:nth-child(odd) {
     flex-direction: column;
   }
+  .story-content {
+    padding-top: 25px;
+  }
 }
 
 /* === LIGHTBOX MODAL === */
+/* (Este código ya no se usa para la sección de historia, pero se puede mantener por si se usa en otro lugar) */
 .lightbox-overlay {
   position: fixed;
   inset: 0;
