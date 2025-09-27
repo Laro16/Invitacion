@@ -53,24 +53,33 @@ function Boda() {
     return () => observer.disconnect();
   }, [isStoryVisible]);
 
-  // 👇 NUEVO EFECTO: Ripple effect en clic/touch
+  // 👇 CAMBIO AQUÍ: Reemplazado el efecto 'ripple' por íconos temáticos aleatorios
   useEffect(() => {
-    const handleRipple = (e) => {
-      const ripple = document.createElement('span');
-      ripple.className = 'ripple';
-      document.body.appendChild(ripple);
+    // SVGs en formato Data URL para no depender de archivos externos
+    const icons = [
+      'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNhODg1NTIiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cGF0aCBkPSJNMjAgNS41YTQuNSA0LjUgMCAwIDEtOCA1YTQuNSA0LjUgMCAwIDEtOC01QzQgMyAxIDYgMSAxNGExMiAxMiAwIDAgMCAyMiAwYzAtOC0zLTExLTctOC41WiIvPjxwYXRoIGQ9Im0xNiA3LTItMiIvPjxwYXRoIGQ9Im04IDdsMi0yIi8+PC9zdmc+', // Ramo
+      'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNhODg1NTIiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cGF0aCBkPSJNOS41IDEzIDE4IDRWMmwtMy41IDNMNiAydjdMMTggMTdaIi8+PHBhdGggZD0ibTYgMTggNCA0IDgtOFoiLz48L3N2Zz4=', // Traje
+      'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNhODg1NTIiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cGF0aCBkPSJNMTEuODEgMTQuMDhhNiA2IDAgMCAwLTEuMDYgMi4wNkMxMy40MiAxOS4zNSAxMSAyMiA3LjUgMjJjLTMuMzEgMC02LTEuNjktNi00LjVTMiAyIDcgMmgwYzQuNDIgMCA4IDMuNTggOCA4IDAgMS42OS0uNTQgMy4yMy0xLjQ0IDQuNTYiLz48cGF0aCBkPSJNMTQuNjIgOC45MWE2IDYgMCAwIDEgMS4wNi0yLjA2QzEzLjU4IDMuNjUgMTYgMSAxOS41IDEgMy4zMSAwIDYgMS42OSA2IDQuNVMxNCAxNSAxOSAxNWMwIDAgMCAwIDAgMGMtNC40MiAwLTgtMy41OC04LTggMC0xLjY5LjU0LTMuMjMgMS40NC00LjU2WiIvPjwvc3ZnPg==' // Anillos
+    ];
 
-      ripple.style.left = `${e.clientX - ripple.offsetWidth / 2}px`;
-      ripple.style.top = `${e.clientY - ripple.offsetHeight / 2}px`;
+    const handleIconEffect = (e) => {
+      const icon = document.createElement('img');
+      icon.className = 'click-icon';
+      // Elegir un ícono aleatorio del array
+      icon.src = icons[Math.floor(Math.random() * icons.length)];
+      document.body.appendChild(icon);
+
+      icon.style.left = `${e.clientX}px`;
+      icon.style.top = `${e.clientY}px`;
 
       setTimeout(() => {
-        ripple.remove();
-      }, 600);
+        icon.remove();
+      }, 1000); // Duración de la animación
     };
 
-    document.addEventListener('click', handleRipple);
+    document.addEventListener('click', handleIconEffect);
     return () => {
-      document.removeEventListener('click', handleRipple);
+      document.removeEventListener('click', handleIconEffect);
     };
   }, []);
 
@@ -134,7 +143,6 @@ function Boda() {
             <button className="btn secondary" onClick={handleAddToCalendar}>Añadir al Calendario</button>
           </div>
         </div>
-        {/* 👇 CAMBIO AQUÍ: Eliminado el indicador de scroll */}
       </header>
       
       <div className={`player ${isPlaying ? 'playing' : ''}`}>
@@ -160,10 +168,8 @@ function Boda() {
               </button>
             </div>
           ) : (
-            // 👇 CAMBIO AQUÍ: Se añade la clase 'is-revealed' para controlar la animación escalonada
             <div className={`story-timeline ${isStoryVisible ? 'is-revealed' : ''}`}>
               {storySlides.map((slide, index) => (
-                // Se elimina la clase 'reveal' para que la animación sea controlada por el padre
                 <div key={index} className="story-item">
                   <div className="story-image">
                     <img src={slide.image} alt={slide.alt} loading="lazy" />
@@ -205,6 +211,8 @@ function Boda() {
               <li key={index} className="tl-item reveal">
                 <div className="tl-time">{item.time}</div>
                 <div className="tl-card card"><div className="body"><b>{item.title}</b><div className="place">{item.place}</div></div></div>
+                {/* 👇 CAMBIO AQUÍ: Se restaura el punto en la línea de tiempo */}
+                <span className="tl-dot" aria-hidden="true"></span>
               </li>
             ))}
           </ul>
