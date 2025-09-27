@@ -7,17 +7,16 @@ function Boda() {
   const { heroImage, backgroundMusic, couple, event, contact, storySlides, locations, itinerary } = weddingData;
 
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, mins: 0, secs: 0 });
-  const [currentSlide, setCurrentSlide] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [guestName, setGuestName] = useState('');
   const [companions, setCompanions] = useState('0');
   
   const [isStoryVisible, setIsStoryVisible] = useState(false);
+  
+  // 👇 CAMBIO AQUÍ: El estado del modal ya no es necesario para la historia
+  // Lo mantenemos por si se usa en otro lado, o lo podemos eliminar si no.
   const [activeModalSlide, setActiveModalSlide] = useState(null);
-
-  const [touchStart, setTouchStart] = useState(null);
-  const [touchEnd, setTouchEnd] = useState(null);
 
   const audioRef = useRef(null);
 
@@ -40,9 +39,6 @@ function Boda() {
     return () => clearInterval(interval);
   }, [event.date]);
   
-  // 👇 CAMBIO AQUÍ: Se agrega 'isStoryVisible' al array de dependencias
-  // Esto fuerza al efecto a re-ejecutarse cuando la galería se muestra,
-  // permitiendo que el observer encuentre los nuevos elementos.
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => entries.forEach(entry => {
@@ -54,12 +50,21 @@ function Boda() {
       { threshold: 0.4 }
     );
     
-    // Seleccionamos solo los elementos que aún no son visibles
     const elementsToReveal = document.querySelectorAll('.reveal:not(.visible)');
     elementsToReveal.forEach((el) => observer.observe(el));
 
+    // La función de limpieza puede simplificarse si el observer se recrea.
     return () => observer.disconnect();
-  }, [isStoryVisible]); // <-- LA CORRECCIÓN CLAVE ESTÁ AQUÍ
+  }, [isStoryVisible]);
+
+  // 👇 NUEVA FUNCIÓN: Se activa al hacer clic en "Ver Nuestra Historia"
+  const handleStoryReveal = () => {
+    setIsStoryVisible(true);
+    // Inicia la música si está pausada
+    if (audioRef.current && audioRef.current.paused) {
+      audioRef.current.play().catch(() => {}); // .catch para evitar errores si el navegador lo bloquea
+    }
+  };
 
   const handleScrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   const handleAddToCalendar = () => {
@@ -92,31 +97,6 @@ function Boda() {
       setIsMuted(audioRef.current.muted);
     }
   };
-
-  const minSwipeDistance = 50;
-  const handleTouchStart = (e) => {
-    setTouchEnd(null);
-    setTouchStart(e.targetTouches[0].clientX);
-  };
-  const handleTouchMove = (e) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
-  const handleTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
-    const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > minSwipeDistance;
-    const isRightSwipe = distance < -minSwipeDistance;
-
-    if (isLeftSwipe) {
-      setCurrentSlide((prev) => (prev + 1) % storySlides.length);
-    }
-    if (isRightSwipe) {
-      setCurrentSlide((prev) => (prev - 1 + storySlides.length) % storySlides.length);
-    }
-    setTouchStart(null);
-    setTouchEnd(null);
-  };
-
 
   return (
     <>
@@ -158,29 +138,26 @@ function Boda() {
           <h2 className="title">Nuestra Historia</h2>
           {!isStoryVisible ? (
             <div className="story-cover">
-              <button className="story-cover-card" onClick={() => setIsStoryVisible(true)}>
+              <button className="story-cover-card" onClick={handleStoryReveal}>
                 <span className="story-cover-subtitle">Click para ver la historia de</span>
                 <span className="story-cover-title">{couple.name1} y {couple.name2}</span>
               </button>
             </div>
           ) : (
-            <>
-              <p className="subtitle">Haz clic en una imagen para revivir nuestros recuerdos más queridos.</p>
-              <div className="story-grid">
-                {storySlides.map((slide, index) => (
-                  <article 
-                    key={index}
-                    className="thumbnail-card reveal"
-                    onClick={() => setActiveModalSlide(index)}
-                  >
+            // 👇 CAMBIO AQUÍ: Se reemplaza la galería por la nueva estructura de historia vertical
+            <div className="story-timeline">
+              {storySlides.map((slide, index) => (
+                <div key={index} className="story-item reveal">
+                  <div className="story-image">
                     <img src={slide.image} alt={slide.alt} loading="lazy" />
-                    <div className="thumbnail-overlay">
-                      <b>{slide.date}</b>
-                    </div>
-                  </article>
-                ))}
-              </div>
-            </>
+                  </div>
+                  <div className="story-content">
+                    <span className="story-date">{slide.date}</span>
+                    <p>{slide.caption}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           )}
         </section>
 
@@ -252,6 +229,7 @@ function Boda() {
         </footer>
       </main>
 
+      {/* El modal ya no es necesario para la historia, pero lo dejamos por si se usa en el futuro */}
       {activeModalSlide !== null && (
         <div className="lightbox-overlay" onClick={() => setActiveModalSlide(null)}>
           <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
