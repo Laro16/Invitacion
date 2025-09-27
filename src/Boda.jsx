@@ -40,6 +40,9 @@ function Boda() {
     return () => clearInterval(interval);
   }, [event.date]);
   
+  // 👇 CAMBIO AQUÍ: Se agrega 'isStoryVisible' al array de dependencias
+  // Esto fuerza al efecto a re-ejecutarse cuando la galería se muestra,
+  // permitiendo que el observer encuentre los nuevos elementos.
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => entries.forEach(entry => {
@@ -47,11 +50,16 @@ function Boda() {
           entry.target.classList.add('visible');
           observer.unobserve(entry.target);
         }
-      }), { threshold: 0.4 }
+      }), 
+      { threshold: 0.4 }
     );
-    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    
+    // Seleccionamos solo los elementos que aún no son visibles
+    const elementsToReveal = document.querySelectorAll('.reveal:not(.visible)');
+    elementsToReveal.forEach((el) => observer.observe(el));
+
     return () => observer.disconnect();
-  }, []);
+  }, [isStoryVisible]); // <-- LA CORRECCIÓN CLAVE ESTÁ AQUÍ
 
   const handleScrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   const handleAddToCalendar = () => {
@@ -160,7 +168,6 @@ function Boda() {
               <p className="subtitle">Haz clic en una imagen para revivir nuestros recuerdos más queridos.</p>
               <div className="story-grid">
                 {storySlides.map((slide, index) => (
-                  // 👇 CAMBIO AQUÍ: Se reemplazó el fondo por una etiqueta <img> real
                   <article 
                     key={index}
                     className="thumbnail-card reveal"
@@ -231,7 +238,7 @@ function Boda() {
             </div>
             <div style={{ marginTop: '24px', textAlign: 'center' }}>
               <button type="submit" className="btn primary" id="btnWhatsapp">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3.5a10 10 0 0 0-16.2 11.3L3 21l6.4-1.3A10 10 0 0 0 20.5 3.5Zm-1.1 13a8 8 0 0 1-11.8 1.5l-.3-.2-3 .6.6-2.9-.2-.3A8 8 0 1 1 19.4 16.5ZM8.9 7.9c.2-.5.4-.5.7-.5h.6c.2 0 .5 0 .7.s.9 1.5.9 1.6.1.4 0 .6-.2.4-.4.6-.4.5-.2.9c.2.4 1 1.6 2.1 2.6 1.5 1.3 2.7 1.7 3.1 1.9s.5 0 .7-.2.8-.9 1-1.2.4-.2.6-.1.6.3 1.4.7 1.2.6 1.4.9.1.9-.2 1.5c-.3.6-1.2 1.1-1.6 1.1s-.9.2-3-.8a13.6 13.6 0 0 1-3.8-2.4 12.2 12.2 0 0 1-2.2-2.6c-.8-1.2-1.1-2.1-1.2-2.4-.2-.4 0-.8.1-1s.5-1.2.6-1.4Z"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3.5a10 10 0 0 0-16.2 11.3L3 21l6.4-1.3A10 10 0 0 0 20.5 3.5Zm-1.1 13a8 8 0 0 1-11.8 1.5l-.3-.2-3 .6.6-2.9-.2-.3A8 8 0 1 1 19.4 16.5ZM8.9 7.9c.2-.5.4-.5.7-.5h.6c.2 0 .5 0 .7.5s.9 1.5.9 1.6.1.4 0 .6-.2.4-.4.6-.4.5-.2.9c.2.4 1 1.6 2.1 2.6 1.5 1.3 2.7 1.7 3.1 1.9s.5 0 .7-.2.8-.9 1-1.2.4-.2.6-.1.6.3 1.4.7 1.2.6 1.4.9.1.9-.2 1.5c-.3.6-1.2 1.1-1.6 1.1s-.9.2-3-.8a13.6 13.6 0 0 1-3.8-2.4 12.2 12.2 0 0 1-2.2-2.6c-.8-1.2-1.1-2.1-1.2-2.4-.2-.4 0-.8.1-1s.5-1.2.6-1.4Z"/></svg>
                 Confirmar por WhatsApp
               </button>
               <p className="helper">O si prefieres, puedes llamar al <a href={`tel:${contact.phone}`}>{contact.phoneDisplay}</a>.</p>
