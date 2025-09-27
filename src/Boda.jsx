@@ -13,6 +13,9 @@ function Boda() {
   const [companions, setCompanions] = useState('0');
   
   const [isStoryVisible, setIsStoryVisible] = useState(false);
+  
+  // 👇 CAMBIO AQUÍ: El estado del modal ya no es necesario para la historia
+  // Lo mantenemos por si se usa en otro lado, o lo podemos eliminar si no.
   const [activeModalSlide, setActiveModalSlide] = useState(null);
 
   const audioRef = useRef(null);
@@ -50,44 +53,16 @@ function Boda() {
     const elementsToReveal = document.querySelectorAll('.reveal:not(.visible)');
     elementsToReveal.forEach((el) => observer.observe(el));
 
+    // La función de limpieza puede simplificarse si el observer se recrea.
     return () => observer.disconnect();
   }, [isStoryVisible]);
 
-  // 👇 CAMBIO AQUÍ: Reemplazado el efecto 'ripple' por íconos temáticos aleatorios
-  useEffect(() => {
-    // SVGs en formato Data URL para no depender de archivos externos
-    const icons = [
-      'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNhODg1NTIiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cGF0aCBkPSJNMjAgNS41YTQuNSA0LjUgMCAwIDEtOCA1YTQuNSA0LjUgMCAwIDEtOC01QzQgMyAxIDYgMSAxNGExMiAxMiAwIDAgMCAyMiAwYzAtOC0zLTExLTctOC41WiIvPjxwYXRoIGQ9Im0xNiA3LTItMiIvPjxwYXRoIGQ9Im04IDdsMi0yIi8+PC9zdmc+', // Ramo
-      'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNhODg1NTIiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cGF0aCBkPSJNOS41IDEzIDE4IDRWMmwtMy41IDNMNiAydjdMMTggMTdaIi8+PHBhdGggZD0ibTYgMTggNCA0IDgtOFoiLz48L3N2Zz4=', // Traje
-      'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNhODg1NTIiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cGF0aCBkPSJNMTEuODEgMTQuMDhhNiA2IDAgMCAwLTEuMDYgMi4wNkMxMy40MiAxOS4zNSAxMSAyMiA3LjUgMjJjLTMuMzEgMC02LTEuNjktNi00LjVTMiAyIDcgMmgwYzQuNDIgMCA4IDMuNTggOCA4IDAgMS42OS0uNTQgMy4yMy0xLjQ0IDQuNTYiLz48cGF0aCBkPSJNMTQuNjIgOC45MWE2IDYgMCAwIDEgMS4wNi0yLjA2QzEzLjU4IDMuNjUgMTYgMSAxOS41IDEgMy4zMSAwIDYgMS42OSA2IDQuNVMxNCAxNSAxOSAxNWMwIDAgMCAwIDAgMGMtNC40MiAwLTgtMy41OC04LTggMC0xLjY5LjU0LTMuMjMgMS40NC00LjU2WiIvPjwvc3ZnPg==' // Anillos
-    ];
-
-    const handleIconEffect = (e) => {
-      const icon = document.createElement('img');
-      icon.className = 'click-icon';
-      // Elegir un ícono aleatorio del array
-      icon.src = icons[Math.floor(Math.random() * icons.length)];
-      document.body.appendChild(icon);
-
-      icon.style.left = `${e.clientX}px`;
-      icon.style.top = `${e.clientY}px`;
-
-      setTimeout(() => {
-        icon.remove();
-      }, 1000); // Duración de la animación
-    };
-
-    document.addEventListener('click', handleIconEffect);
-    return () => {
-      document.removeEventListener('click', handleIconEffect);
-    };
-  }, []);
-
-
+  // 👇 NUEVA FUNCIÓN: Se activa al hacer clic en "Ver Nuestra Historia"
   const handleStoryReveal = () => {
     setIsStoryVisible(true);
+    // Inicia la música si está pausada
     if (audioRef.current && audioRef.current.paused) {
-      audioRef.current.play().catch(() => {});
+      audioRef.current.play().catch(() => {}); // .catch para evitar errores si el navegador lo bloquea
     }
   };
 
@@ -143,6 +118,7 @@ function Boda() {
             <button className="btn secondary" onClick={handleAddToCalendar}>Añadir al Calendario</button>
           </div>
         </div>
+        <div className="scroll-down-indicator"></div>
       </header>
       
       <div className={`player ${isPlaying ? 'playing' : ''}`}>
@@ -168,9 +144,10 @@ function Boda() {
               </button>
             </div>
           ) : (
-            <div className={`story-timeline ${isStoryVisible ? 'is-revealed' : ''}`}>
+            // 👇 CAMBIO AQUÍ: Se reemplaza la galería por la nueva estructura de historia vertical
+            <div className="story-timeline">
               {storySlides.map((slide, index) => (
-                <div key={index} className="story-item">
+                <div key={index} className="story-item reveal">
                   <div className="story-image">
                     <img src={slide.image} alt={slide.alt} loading="lazy" />
                   </div>
@@ -211,8 +188,6 @@ function Boda() {
               <li key={index} className="tl-item reveal">
                 <div className="tl-time">{item.time}</div>
                 <div className="tl-card card"><div className="body"><b>{item.title}</b><div className="place">{item.place}</div></div></div>
-                {/* 👇 CAMBIO AQUÍ: Se restaura el punto en la línea de tiempo */}
-                <span className="tl-dot" aria-hidden="true"></span>
               </li>
             ))}
           </ul>
@@ -254,6 +229,7 @@ function Boda() {
         </footer>
       </main>
 
+      {/* El modal ya no es necesario para la historia, pero lo dejamos por si se usa en el futuro */}
       {activeModalSlide !== null && (
         <div className="lightbox-overlay" onClick={() => setActiveModalSlide(null)}>
           <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
