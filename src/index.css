@@ -1,5 +1,5 @@
 :root{
-  --brand:#a88552;        /* Oro principal */
+  --brand:#a88522;        /* Oro principal */
   --brand-light: #e6d8c3;  /* Oro claro */
   --ink:#2c2c2c;           /* Texto principal (casi negro) */
   --muted:#7d7d7d;         /* Texto secundario */
@@ -50,15 +50,10 @@ a:hover{color:var(--accent);}
 
 /* === HERO === */
 header.hero{
-  min-height: 75svh; 
-  display:flex; 
-  flex-direction: column; 
-  justify-content: center;
-  text-align:center; 
-  position:relative; 
-  overflow:hidden; 
-  color:#fff;
-  padding: 80px 0;
+  min-height: 80svh; 
+  display:flex; flex-direction: column; justify-content: center;
+  text-align:center; position:relative; overflow:hidden; color:#fff;
+  padding: 40px 0;
   background:
     linear-gradient(to top, rgba(30, 65, 58, 0.7), rgba(30, 65, 58, 0.3) 60%, transparent),
     url('/assets/imagenes/hero-portada.webp') center/cover no-repeat;
@@ -81,30 +76,19 @@ header h1{
 header p.sub{color:#f0f0f0; margin:.5rem 0 1.5rem; font-size: 1.1rem;}
 
 /* === COUNTDOWN === */
-/* 👇 CAMBIOS AQUÍ: Ajustes de tamaño y espaciado para el contador */
-.countdown{
-  display:flex; 
-  justify-content:center; 
-  gap: 10px;
-  margin:24px auto;
-  flex-wrap: wrap;
-}
+.countdown{display:flex; justify-content:center; gap:12px; margin:24px auto;}
 .time-box{
-  min-width: 70px;
-  border-radius: 12px; 
-  padding: 8px 5px;
-  text-align:center; 
-  color:#fff;
+  min-width:80px; border-radius:var(--radius); padding:12px; text-align:center; color:#fff;
   background:rgba(255,255,255,.1);
   border:1px solid rgba(255,255,255,.25);
   box-shadow:var(--shadow-soft);
   backdrop-filter: blur(8px);
 }
-.time-box .num{font-size:clamp(24px, 5vw, 32px); font-weight:600; display:block; line-height:1.1;}
-.time-box .label{font-size:10px; opacity:.8; letter-spacing:.08em; text-transform:uppercase}
+.time-box .num{font-size:clamp(28px, 5vw, 36px); font-weight:600; display:block; line-height:1.1;}
+.time-box .label{font-size:11px; opacity:.8; letter-spacing:.08em; text-transform:uppercase}
 
 /* === BOTONES === */
-.cta-row{display:flex; gap:.6rem; justify-content:center; flex-wrap:wrap; margin-top: 20px;}
+.cta-row{display:flex; gap:.8rem; justify-content:center; flex-wrap:wrap; margin-top: 24px;}
 .btn{
   appearance:none; border: 1.5px solid;
   background: transparent; color: inherit; 
@@ -115,11 +99,6 @@ header p.sub{color:#f0f0f0; margin:.5rem 0 1.5rem; font-size: 1.1rem;}
   text-align: center;
   text-transform: uppercase;
   letter-spacing: .05em;
-}
-/* 👇 CAMBIOS AQUÍ: Botones del hero más pequeños */
-header .btn.secondary {
-  padding: .6rem 1.2rem;
-  font-size: 0.9rem;
 }
 .btn.primary {
   background-color: var(--brand);
@@ -143,13 +122,88 @@ header .btn.secondary {
 }
 .btn svg { width: 18px; height: 18px; }
 
-/* ... (resto de los estilos sin cambios) ... */
+/* ... (Estilos de botones especiales sin cambios) ... */
+
+/* === SECCIONES Y SEPARADORES === */
+section.sectioned{
+  padding:80px 0;
+  position:relative
+}
+section.sectioned::before{
+  content: url("data:image/svg+xml,%3Csvg width='80' height='20' viewBox='0 0 80 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40 10L80 10' stroke='%23a88552' stroke-opacity='0.5'/%3E%3Cpath d='M40 10L0 10' stroke='%23a88552' stroke-opacity='0.5'/%3E%3Cpath d='M45.5 18.5C45.5 18.5 42.5 10 40 10C37.5 10 34.5 1.5 34.5 1.5' stroke='%23a88552' stroke-opacity='0.5'/%3E%3Cpath d='M34.5 18.5C34.5 18.5 37.5 10 40 10C42.5 10 45.5 1.5 45.5 1.5' stroke='%23a88552' stroke-opacity='0.5'/%3E%3C/svg%3E%0A");
+  position:absolute; top:20px; left:50%; transform:translateX(-50%);
+}
+
+/* === TARJETAS DE CONTENIDO (LUGARES) === */
+.grid{display:grid; gap:24px}
+@media(min-width:720px){.grid.two{grid-template-columns:repeat(2,1fr)}}
+.card{
+  background:var(--card); 
+  border-radius:var(--radius); 
+  box-shadow:var(--shadow-soft); 
+  transition:transform .25s ease, box-shadow .25s ease;
+  will-change: transform, box-shadow;
+  overflow: hidden;
+}
+.grid.two .card img {
+  height: 250px;
+  width: 100%;
+  object-fit: cover;
+}
+.card:hover{transform:translateY(-5px); box-shadow:var(--shadow-medium)}
+.card .body{
+  padding:20px; /* Reducido de 24px */
+}
+/* 👇 CAMBIOS AQUÍ para la sección de Ubicaciones */
+#lugares .card .body .helper {
+  line-height: 1.5; /* Texto más junto */
+  margin-bottom: 24px;
+}
+#lugares .card .center-actions {
+  margin-bottom: 0;
+}
+#lugares .card .btn {
+  padding: .5rem 1rem; /* Botón más pequeño */
+  font-size: 0.9rem;
+}
+#lugares .card .body {
+  /* Efecto de vidrio esmerilado */
+  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* === TIMELINE (ITINERARIO) === */
+.timeline{
+  position:relative; 
+  max-width: 600px;
+  margin:40px auto 0;
+}
+.timeline::before{content:""; position:absolute; left:45px; top:10px; bottom:10px; width:2px; background:var(--brand-light);}
+.tl-item{display:grid; grid-template-columns:90px 1fr; gap:16px; align-items:center; position:relative; margin-bottom:20px}
+.tl-time{
+  font-weight:600; 
+  font-size: 1rem;
+  color: var(--accent); 
+  text-align: center;
+  padding: 2px 0;
+  background: var(--bg);
+  position:relative; 
+  z-index:2;
+}
+.tl-card.card{box-shadow:var(--shadow-soft); padding:20px; will-change: none; }
+.tl-card.card:hover { transform: none; box-shadow: var(--shadow-medium); }
+.tl-card .body{padding:0}
+.tl-card .place{color:var(--muted); font-size:.95rem}
+.tl-card b { color: var(--accent); }
+
+/* ... (resto de estilos de formulario, reproductor, etc., sin cambios) ... */
 
 /* === FOOTER === */
 footer.signature{ 
   text-align:center; 
   color:var(--muted);
-  padding-bottom: 80px;
+  padding-bottom: 40px;
 }
 footer.signature em{ 
   font-family:'Dancing Script', cursive; 
@@ -164,26 +218,107 @@ footer.signature em{
 
 /* 👇 CAMBIO AQUÍ: Eliminados los estilos del scroll-down-indicator */
 
-/* ... (resto de estilos de story cover, timeline, lightbox, etc., sin cambios) ... */
+/* === STORY COVER === */
+.story-cover {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 0;
+}
+.story-cover-card {
+  background-color: var(--accent);
+  color: var(--card);
+  border-radius: var(--radius);
+  width: 100%;
+  max-width: 450px;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  cursor: pointer;
+  border: none;
+  box-shadow: var(--shadow-medium);
+  transition: var(--transition);
+}
+.story-cover-card:hover {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 12px 28px rgba(0,0,0,.1);
+}
+.story-cover-subtitle {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.1rem;
+  color: var(--brand-light);
+  margin: 0;
+}
+.story-cover-title {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(2.5rem, 8vw, 3.5rem);
+  color: var(--card);
+  margin: 10px 0 0;
+  line-height: 1.1;
+}
 
-/* === CLICK ICON EFFECT === */
-.click-icon {
-  position: fixed;
-  width: 30px;
-  height: 30px;
-  pointer-events: none;
-  z-index: 9999;
-  animation: float-up 1s ease-out forwards;
+/* === STORY TIMELINE === */
+.story-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  max-width: 800px;
+  margin: 0 auto;
 }
-@keyframes float-up {
-  0% {
-    transform: translate(-50%, -50%) scale(0.5);
-    opacity: 1;
-  }
-  100% {
-    transform: translate(-50%, -150px) scale(1.2);
-    opacity: 0;
+/* 👇 CAMBIOS AQUÍ para la sección de Historia */
+.story-item {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  /* Efecto blur de fondo */
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 16px;
+  border-radius: var(--radius);
+}
+.story-item:nth-child(odd) {
+  flex-direction: row-reverse;
+}
+.story-image {
+  flex: 1 1 50%;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-medium);
+  /* Marco para la imagen */
+  padding: 8px;
+  background: var(--card);
+}
+.story-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.story-content {
+  flex: 1 1 50%;
+}
+.story-date {
+  font-weight: 600;
+  color: var(--brand);
+  display: block;
+  margin-bottom: 8px;
+}
+.story-content p {
+  margin: 0;
+  color: var(--muted);
+}
+/* Adaptación para móviles */
+@media (max-width: 720px) {
+  .story-item,
+  .story-item:nth-child(odd) {
+    flex-direction: column;
   }
 }
+
+/* ... (código del lightbox sin cambios) ... */
 
 @media (prefers-reduced-motion:reduce){*{animation:none!important; transition:none!important; scroll-behavior:auto!important}}
