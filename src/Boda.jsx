@@ -14,8 +14,6 @@ function Boda() {
   
   const [isStoryVisible, setIsStoryVisible] = useState(false);
   
-  // 👇 CAMBIO AQUÍ: El estado del modal ya no es necesario para la historia
-  // Lo mantenemos por si se usa en otro lado, o lo podemos eliminar si no.
   const [activeModalSlide, setActiveModalSlide] = useState(null);
 
   const audioRef = useRef(null);
@@ -53,16 +51,13 @@ function Boda() {
     const elementsToReveal = document.querySelectorAll('.reveal:not(.visible)');
     elementsToReveal.forEach((el) => observer.observe(el));
 
-    // La función de limpieza puede simplificarse si el observer se recrea.
     return () => observer.disconnect();
   }, [isStoryVisible]);
 
-  // 👇 NUEVA FUNCIÓN: Se activa al hacer clic en "Ver Nuestra Historia"
   const handleStoryReveal = () => {
     setIsStoryVisible(true);
-    // Inicia la música si está pausada
     if (audioRef.current && audioRef.current.paused) {
-      audioRef.current.play().catch(() => {}); // .catch para evitar errores si el navegador lo bloquea
+      audioRef.current.play().catch(() => {});
     }
   };
 
@@ -118,7 +113,7 @@ function Boda() {
             <button className="btn secondary" onClick={handleAddToCalendar}>Añadir al Calendario</button>
           </div>
         </div>
-        <div className="scroll-down-indicator"></div>
+        {/* 👇 CAMBIO AQUÍ: Eliminado el div del scroll-down-indicator */}
       </header>
       
       <div className={`player ${isPlaying ? 'playing' : ''}`}>
@@ -144,7 +139,6 @@ function Boda() {
               </button>
             </div>
           ) : (
-            // 👇 CAMBIO AQUÍ: Se reemplaza la galería por la nueva estructura de historia vertical
             <div className="story-timeline">
               {storySlides.map((slide, index) => (
                 <div key={index} className="story-item reveal">
@@ -229,7 +223,6 @@ function Boda() {
         </footer>
       </main>
 
-      {/* El modal ya no es necesario para la historia, pero lo dejamos por si se usa en el futuro */}
       {activeModalSlide !== null && (
         <div className="lightbox-overlay" onClick={() => setActiveModalSlide(null)}>
           <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
