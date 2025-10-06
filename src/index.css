@@ -1,13 +1,13 @@
 :root{
-  --brand:#a88522;        /* Oro principal */
+  --brand:#a88522;         /* Oro principal */
   --brand-light: #e6d8c3;  /* Oro claro */
   --ink:#2c2c2c;           /* Texto principal (casi negro) */
   --muted:#7d7d7d;         /* Texto secundario */
   --accent: #1e413a;       /* Verde esmeralda profundo */
   --bg:#fbf9f6;            /* Fondo (blanco hueso) */
   --card:#ffffff;          /* Tarjetas (blanco puro) */
-  --radius: 16px;           /* Radios globales */
-  --maxw: 900px;            /* Ancho máximo del contenido */
+  --radius: 16px;          /* Radios globales */
+  --maxw: 900px;           /* Ancho máximo del contenido */
   --shadow-soft: 0 4px 12px rgba(0,0,0,.05);
   --shadow-medium: 0 8px 24px rgba(0,0,0,.08);
   --transition: all .3s cubic-bezier(.25,.8,.25,1);
@@ -122,8 +122,6 @@ header p.sub{color:#f0f0f0; margin:.5rem 0 1.5rem; font-size: 1.1rem;}
 }
 .btn svg { width: 18px; height: 18px; }
 
-/* ... (Estilos de botones especiales sin cambios) ... */
-
 /* === SECCIONES Y SEPARADORES === */
 section.sectioned{
   padding:80px 0;
@@ -152,22 +150,20 @@ section.sectioned::before{
 }
 .card:hover{transform:translateY(-5px); box-shadow:var(--shadow-medium)}
 .card .body{
-  padding:20px; /* Reducido de 24px */
+  padding:20px;
 }
-/* 👇 CAMBIOS AQUÍ para la sección de Ubicaciones */
 #lugares .card .body .helper {
-  line-height: 1.5; /* Texto más junto */
+  line-height: 1.5;
   margin-bottom: 24px;
 }
 #lugares .card .center-actions {
   margin-bottom: 0;
 }
 #lugares .card .btn {
-  padding: .5rem 1rem; /* Botón más pequeño */
+  padding: .5rem 1rem;
   font-size: 0.9rem;
 }
 #lugares .card .body {
-  /* Efecto de vidrio esmerilado */
   background-color: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(8px);
   border-top: 1px solid rgba(255, 255, 255, 0.2);
@@ -197,7 +193,69 @@ section.sectioned::before{
 .tl-card .place{color:var(--muted); font-size:.95rem}
 .tl-card b { color: var(--accent); }
 
-/* ... (resto de estilos de formulario, reproductor, etc., sin cambios) ... */
+/* 👇 NUEVOS ESTILOS AQUÍ */
+/* === FORMULARIO RSVP === */
+.rsvp-card {
+  background: var(--card);
+  padding: 32px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-medium);
+  max-width: 550px;
+  margin: 0 auto;
+}
+@media (max-width: 600px) {
+  .rsvp-card {
+    padding: 24px;
+  }
+}
+.field {
+  margin-bottom: 20px;
+}
+.field label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: var(--accent);
+  font-size: 0.95rem;
+}
+.input, .select {
+  width: 100%;
+  padding: 12px 16px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  color: var(--ink);
+  background-color: var(--bg);
+  border: 1.5px solid var(--brand-light);
+  border-radius: 10px;
+  transition: var(--transition);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.input:focus, .select:focus {
+  outline: none;
+  border-color: var(--brand);
+  box-shadow: 0 0 0 3px rgba(168, 133, 34, 0.2); /* Usando el color --brand */
+}
+.select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%237d7d7d'%3E%3Cpath d='M8 11L2 5h12z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 1em;
+  padding-right: 40px; /* Espacio para la flecha */
+}
+.form-actions {
+  margin-top: 24px;
+  text-align: center;
+}
+.form-actions .helper {
+  margin-top: 16px;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+.form-actions .helper a {
+  font-weight: 500;
+}
 
 /* === FOOTER === */
 footer.signature{ 
@@ -215,8 +273,6 @@ footer.signature em{
 /* === ANIMACIONES === */
 .reveal{opacity:0; transform:translateY(20px); transition:opacity .8s ease, transform .8s ease; will-change: opacity, transform;}
 .reveal.visible{opacity:1; transform:none}
-
-/* 👇 CAMBIO AQUÍ: Eliminados los estilos del scroll-down-indicator */
 
 /* === STORY COVER === */
 .story-cover {
@@ -269,12 +325,10 @@ footer.signature em{
   max-width: 800px;
   margin: 0 auto;
 }
-/* 👇 CAMBIOS AQUÍ para la sección de Historia */
 .story-item {
   display: flex;
   gap: 24px;
   align-items: center;
-  /* Efecto blur de fondo */
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -289,7 +343,6 @@ footer.signature em{
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: var(--shadow-medium);
-  /* Marco para la imagen */
   padding: 8px;
   background: var(--card);
 }
@@ -311,7 +364,6 @@ footer.signature em{
   margin: 0;
   color: var(--muted);
 }
-/* Adaptación para móviles */
 @media (max-width: 720px) {
   .story-item,
   .story-item:nth-child(odd) {
@@ -319,6 +371,6 @@ footer.signature em{
   }
 }
 
-/* ... (código del lightbox sin cambios) ... */
+/* ... (código del lightbox y reproductor sin cambios) ... */
 
 @media (prefers-reduced-motion:reduce){*{animation:none!important; transition:none!important; scroll-behavior:auto!important}}
