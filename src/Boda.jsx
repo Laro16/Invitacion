@@ -113,7 +113,6 @@ function Boda() {
             <button className="btn secondary" onClick={handleAddToCalendar}>Añadir al Calendario</button>
           </div>
         </div>
-        {/* 👇 CAMBIO AQUÍ: Eliminado el div del scroll-down-indicator */}
       </header>
       
       <div className={`player ${isPlaying ? 'playing' : ''}`}>
@@ -192,11 +191,11 @@ function Boda() {
           <p className="subtitle">Tu presencia es nuestro mayor regalo. Por favor, confirma tu asistencia antes del 6 de Noviembre de 2025.</p>
           <form className="rsvp-card" onSubmit={handleRsvpSubmit}>
             <div className="field">
-              <label htmlFor="guestName"><span>Nombre Completo</span></label>
+              <label htmlFor="guestName">Nombre Completo</label>
               <input className="input" id="guestName" type="text" placeholder="Escribe tu nombre y apellido" required value={guestName} onChange={(e) => setGuestName(e.target.value)} />
             </div>
             <div className="field">
-              <label htmlFor="companions"><span>Acompañantes</span></label>
+              <label htmlFor="companions">Acompañantes</label>
               <select className="select" id="companions" value={companions} onChange={(e) => setCompanions(e.target.value)}>
                 <option value="0">Asistiré sin acompañantes</option>
                 <option value="1">Asistiré con 1 acompañante</option>
@@ -207,7 +206,8 @@ function Boda() {
                 <option value="-1">Lamentablemente no podré asistir</option>
               </select>
             </div>
-            <div style={{ marginTop: '24px', textAlign: 'center' }}>
+            {/* 👇 CAMBIO AQUÍ: Se reemplazó el div con estilo en línea por uno con una clase */}
+            <div className="form-actions">
               <button type="submit" className="btn primary" id="btnWhatsapp">
                 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3.5a10 10 0 0 0-16.2 11.3L3 21l6.4-1.3A10 10 0 0 0 20.5 3.5Zm-1.1 13a8 8 0 0 1-11.8 1.5l-.3-.2-3 .6.6-2.9-.2-.3A8 8 0 1 1 19.4 16.5ZM8.9 7.9c.2-.5.4-.5.7-.5h.6c.2 0 .5 0 .7.5s.9 1.5.9 1.6.1.4 0 .6-.2.4-.4.6-.4.5-.2.9c.2.4 1 1.6 2.1 2.6 1.5 1.3 2.7 1.7 3.1 1.9s.5 0 .7-.2.8-.9 1-1.2.4-.2.6-.1.6.3 1.4.7 1.2.6 1.4.9.1.9-.2 1.5c-.3.6-1.2 1.1-1.6 1.1s-.9.2-3-.8a13.6 13.6 0 0 1-3.8-2.4 12.2 12.2 0 0 1-2.2-2.6c-.8-1.2-1.1-2.1-1.2-2.4-.2-.4 0-.8.1-1s.5-1.2.6-1.4Z"/></svg>
                 Confirmar por WhatsApp
